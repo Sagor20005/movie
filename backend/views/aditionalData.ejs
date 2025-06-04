@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Aditional Data</title>
+  <%- include("component/head", {baseurl, scriptFile}) %>
+</head>
+<body>
+  <!-- HEADER SECTIN -->
+  <%- include('header', {baseurl}); %>
+  <!-- ADITIONAL SECTION -->
+  <form id="aditional_form">
+    <div>
+      <select name="fild">
+        <option value="" >Chose</option>
+        <option value="Category" >Category</option>
+        <option value="Type" >Type</option>
+        <option value="Genre" >Genre</option>
+      </select>
+      <input name="data" type="text" placeholder="Enter value" required>
+    </div>
+    <button>Add.</button>
+  </form>
+  <section id="aditional_section">
+    
+    <!-- CATEGORY -->
+    <div class="option_view_box">
+      <h4>Category.</h4>
+      <ul id="category_list" class="option_list"></ul>
+    </div>
+    
+    <!-- TYPE -->
+    <div class="option_view_box">
+      <h4>Type.</h4>
+      <ul id="type_list" class="option_list"></ul>
+    </div>
+    
+    <!-- GENRE -->
+    <div id="genre_show" class="option_view_box">
+      <h4>Genre.</h4>
+      <ul id="genre_list" class="option_list"></ul>
+    </div>
+    
+  </section>
+</body>
+</html>

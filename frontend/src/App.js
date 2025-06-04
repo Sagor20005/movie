@@ -1,0 +1,61 @@
+import './App.css';
+import { BrowserRouter, Routes, Route} from "react-router-dom"
+import Home from "./Components/Home"
+import Content from "./Components/Content"
+import Navbar from "./Components/Navbar"
+import Footer from "./Components/Footer"
+import Download from "./Components/Download"
+import DownloadStart from "./Components/DownloadStart"
+import { HelmetProvider } from 'react-helmet-async'
+import { useSelector } from "react-redux"
+import { useEffect } from "react"
+
+function App() {
+  const helmetContext = {};
+  // Get setting
+  const { settings } = useSelector((state)=> state.setting )
+  
+  function SetTheamColors(colors){
+    // root element
+    const root = document.documentElement
+    
+    // set varuable
+    root.style.setProperty("--text",colors.text_color)
+    root.style.setProperty("--title",colors.title_color)
+    root.style.setProperty("--bg",colors.bg_color)
+    root.style.setProperty("--link",colors.link_color)
+    root.style.setProperty("--small_text",colors.small_text_color)
+    root.style.setProperty("--logo",colors.logo_color)
+    
+  }
+  
+  useEffect(()=>{
+    if(settings && settings.Colors) SetTheamColors(settings.Colors)
+  },[settings])
+  
+  
+  
+  return (
+    <HelmetProvider context={helmetContext}>
+      
+      <div className="App">
+      <BrowserRouter>
+      <Navbar />
+      <div className="App_body">
+          <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/content" element={<Content />}/>
+            <Route path="/download/:id" element={<Download />}/>
+            <Route path="/dstart/:id" element={<DownloadStart />}/>
+          </Routes>
+      </div>
+      <Footer />
+      </BrowserRouter>
+    </div>
+      
+    </HelmetProvider>
+    
+  );
+}
+
+export default App;

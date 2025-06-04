@@ -1,0 +1,32 @@
+.NewUpdate_section{
+  padding: 10px;
+  min-height: 200px;
+  text-transform: capitalize;
+}
+.NewUpdate_section h3{
+  margin-block: 10px;
+  color: var(--title);
+  font-weight: 500;
+  padding-block: 10px;
+}
+
+
+.NewUpdate_list .list_con{
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+@scope(.NewUpdate_list .list_con){
+  img{
+    max-width: 70px;
+  }
+  div{
+    padding-block: 10px;
+  }
+}
+
+.component_state{
+  margin-left: 50%;
+  transform: translate(-50%);
+  height: 100px;
+}

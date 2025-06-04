@@ -1,0 +1,23 @@
+.home_overly{
+  height: 100dvh;
+  width: 100dvw;
+  background-color: var(--text);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_overly > img{
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+@media (min-width:500px){
+  .home_body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

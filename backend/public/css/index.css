@@ -1,0 +1,23 @@
+main{
+  padding: 10px;
+}
+.dasbord_section{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  max-width: 500px;
+  background-color: var(--box_bg);
+  border-radius: 10px;
+}
+.dasbord_section .item{
+  padding: 20px;
+  text-align: center;
+}
+.item h2, .item h4{
+  margin-block: 10px;
+}
+.item h4 a{
+  text-decoration: none;
+  color: var(--text);
+}

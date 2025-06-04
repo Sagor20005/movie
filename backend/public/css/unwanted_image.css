@@ -1,0 +1,29 @@
+img{
+  max-width: 100%;
+}
+#unwanted_image_section{
+  padding: 20px;
+  position: relative;
+}
+#unwanted_image_section #delete_all_btn{
+  position: absolute;
+  top: 40px;
+  right: 30px;
+  padding: 5px 10px;
+  border: none;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+#unwanted_image_section h3{
+  margin-block: 20px;
+  color: var(--Title_text);
+}
+#unwanted_image_section #image_list{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(50px,100px));
+  gap: 5px;
+}
+#image_list img{
+  border-radius: 10px;
+}

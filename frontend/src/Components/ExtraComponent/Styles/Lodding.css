@@ -1,0 +1,14 @@
+.Lodding_containar{
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #49606f36;
+}
+.Lodding_containar img{
+  height: 100px;
+}

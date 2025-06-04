@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Settings</title>
+    <%- include("component/head",{ scriptFile }) %>
+  </head>
+  <body>
+    <!-- NAVBAR SECTION -->
+    <%- include("header") %>
+    
+    <!-- SETTING BODY  -->
+    <main id="setting_main">
+      <h2>Settings</h2>
+      <section id="setting_section">
+        
+        <!-- _____________UPDATE FORM -->
+        <form id="update_form">
+          
+          <!-- Color select section -->
+          <div class="form_item" id="color_box">
+            <h3>Theam</h3>
+            <div>
+              <label>Text color</label>
+              <input name="text_color" id="txt_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label>background color</label>
+              <input name="bg_color" id="bg_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label>Title color</label>
+              <input name="title_color" id="title_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label>Box background color</label>
+              <input name="box_bg_color" id="box_bg_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label> Small text </label>
+              <input name="small_text_color" id="sml_txt_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label> Link color </label>
+              <input name="link_color" id="link_clor" value="#37ae6b" type="color">
+            </div>
+            <div>
+              <label> Logo color </label>
+              <input name="logo_color" id="logo_clor" value="#37ae6b" type="color">
+            </div>
+            
+          </div>
+          
+          <!-- Other information -->
+          <div class="form_item" id="other_info_box">
+            <h3>Other information</h3>
+            
+            <div>
+              <label>Current Domain :</label>
+              <input name="Site_url" id="domain_input" type="url" placeholder="Enter url..">
+            </div>
+            <div>
+              <label>Website Name :</label>
+              <input name="Site_name" id="siteName_input" type="text" placeholder="Enter url..">
+            </div>
+            
+          </div>
+          
+          
+          <button>Update</button>
+        </form>
+        
+      </section>
+    </main>
+    
+  </body>
+</html>

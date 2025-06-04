@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>document</title>
+    <%- include("component/head",{scriptFile}) %>
+  </head>
+  <body>
+    <%- include('header'); %>
+    <main id="main">
+      <form id="add_movie_form">
+        
+        
+        <fieldset id="movie_details_box">
+          <legend>Details</legend>
+          <input value="<%= data?.Title %>" type="text" name="Title" placeholder="Write Title.." required>
+          <input value="<%= data?.Year %>"  type="text" name="Year" placeholder="Write Year..">
+          <input type="text" value="<%= data?.Rated %>"  name="Rated" placeholder="Write Rated..">
+          <input type="text" value="<%= data?.Released %>"  name="Released" placeholder="Write Released..">
+          <input type="text" value="<%= data?.Runtime %>"  name="Runtime" placeholder="Runtime">
+          <input type="text" value="<%= data?.Director %>"  name="Director" placeholder="Director name..">
+          <input type="text" value="<%= data?.Writer %>"  name="Writer" placeholder="Writer..">
+          <input type="text" value="<%= data?.Actors %>"  name="Actors" placeholder="Actors Names ...">
+          <input type="text" value="<%= data?.Country %>"  name="Country" placeholder="Country">
+          <input type="text" value="<%= data?.imdbRating %>"  name="imdbRating" placeholder="imdbRating">
+          <input type="text" value="<%= data?.imdbVotes %>"  name="imdbVotes" placeholder="imdbVotes">
+          <input type="text" value="<%= data?.imdbID %>"  name="imdbID" placeholder="imdbID">
+          <input type="text" value="<%= data?.Language %>"  name="Language" placeholder="Language.." required><br>
+          <textarea name="Plot" placeholder="Write plot..."><%= data?.Plot %></textarea>
+        </fieldset>
+        
+        <fieldset id="select_box">
+          <legend>Options</legend>
+          <select name="Type">
+            <option style="opacity: 0;" value="<%= data?.Type %>" selected ><%= data?.Type %></option>
+          </select>
+          <select name="Category">
+            <option value="<%= data?.Category %>" selected ><%= data?.Category %></option>
+          </select>
+          
+        </fieldset>
+        
+        <fieldset id="radio_battons">
+          <legend>Options</legend>
+            <div>
+              <label for="Trand">Tranding</label>
+              <input <%= data?.Trand && "checked"  %> id="Trand" type="radio" name="Trand">
+            </div>
+            
+            <div>
+              <label for="New">Updated</label>
+              <input <%= data?.New && "checked"  %> id="New" type="radio" name="New">
+            </div>
+          
+            <div>
+              <label for="AutoShow">Auto show</label>
+              <input <%= data?.AutoShow && "checked"  %> id="AutoShow" type="radio" name="AutoShow">
+            </div>
+          
+        </fieldset>
+        
+        <fieldset id="poster_section">
+          <legend>Add poster</legend>
+          <div id="poster_previw">
+            <% if(data && data.Poster){ %>
+              <img src="<%= data?.Poster %>">
+            <% } %>
+          </div>
+          <input id="poster_url_input" type="url" placeholder="Enter poster link..">
+          <button type="button" id="add_poster_btn">Add.</button>
+          <span>or</span>
+          <input id="poster_file_input" type="file" accept="image/*">
+        </fieldset>
+        <fieldset id="image_section">
+          <legend>Add image</legend>
+          <div id="added_images">
+            <% data?.Images.forEach((image)=>{ %>
+              <img src="<%= image %>">
+            <% }) %>
+          </div>
+          <input id="images_file_input" type="file" accept="image/*">
+          <span>or</span>
+          <input id="image_input" type="url" placeholder="type a img url.">
+          <button id="add_img_btn" type="button">Add image</button>
+        </fieldset>
+        
+        <!-- Genre functionality -->
+        <ul id="Genre_section">
+          <% data?.Genre.forEach((genre)=>{ %>
+            <li onclick="deleteAGenre('<%= genre %>')" ><%= genre %></li>
+          <% }) %>
+        </ul>
+        <select id="chose_genre_section"></select>
+        <!-- Genre functionality end -->
+        
+        <!-- Download link adder -->
+        <div id="download_link_adder">
+          <h4>Downloades.</h4>
+          <table id="download_tbl">
+            <% data?.Downloads.forEach((download)=>{ %>
+              <tr>
+                <td> <a href="<%= download?.url %>">Download</a> </td>
+                <td><%= download?.quality %></td>
+                <td><%= download?.language %></td>
+                <td><%= download?.size %></td>
+                <td><button onclick="deleteLink('<%= download?.url %>')">Delete</button></td>
+              </tr>
+            <% }) %>
+          </table>
+          <div id="dif">
+            <input id="download_url" type="text" placeholder="url..">
+            <input id="download_language" type="text" placeholder="Language..">
+            <input id="download_quality" type="text" placeholder="Quality..">
+            <input id="download_size" type="text" placeholder="size..">
+          </div>
+          <button type="button" id="add_download_link">Add Link.</button>
+        </div>
+        <!-- end -->
+        
+        <button>Update movie</button>
+      </form>
+    </main>
+  </body>
+  
+  <script type="module">
+    import {FillImportantVaruable} from "/js/update.js"
+    try{
+      const downloadList = <%- JSON.stringify(data?.Downloads) %>
+      const genreList = <%- JSON.stringify(data?.Genre) %>
+      const imagesList = <%- JSON.stringify(data?.Images) %>
+      const UploadedImageIdList = <%- JSON.stringify(data?.UploadedImageIds) %>
+      const PosterUrl = <%- JSON.stringify(data?.Poster) %>
+      
+      
+      FillImportantVaruable( <%- JSON.stringify(data) %> )
+    }catch(err){
+      console.log(err)
+    }
+  </script>
+  
+</html>

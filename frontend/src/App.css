@@ -1,0 +1,37 @@
+:root{
+  --text: #1a3031;
+  --title:#468553;
+  --bg: #cedbd1;
+  --box_bg: #81c194;
+  --link:#16501d;
+  --small_text:#7f7f7f;
+  --logo: #6d86b4;
+}
+@font-face {
+  font-family: myFont;
+  src: url(./Components/Assets/ComicRelief-Regular.ttf);
+}
+@font-face {
+  font-family: myLogoFont;
+  src: url(./Components/Assets/AlfaSlabOne-Regular.ttf);
+}
+
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-transform: capitalize;
+  font-family: myFont, sans-serif;
+}
+img{
+  max-width: 100%;
+}
+body{
+  background-color: var(--bg);
+  color: var(--text);
+  padding-bottom: 100px;
+}
+.App .App_body{
+  width: 100%;
+  padding-top: 80px;
+}
