@@ -21,7 +21,7 @@ connectDb()
 
 // CALL INITIAL SETTINGS
 setSetting()
-
+app.set('views', path.join(__dirname, 'views')
 app.set('view engine', 'ejs')
 
 
