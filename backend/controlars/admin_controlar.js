@@ -2,6 +2,15 @@ const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const movieColl = require("../database/models/movies_model.js")
 
 
+
+// For tarning on server every 5 minute
+const TarnOn = (req,resp)=>{
+  resp.status(200).json({
+    status:true
+  })
+}
+
+
 // Get home page
 const getHome = (req,resp)=>{
   resp.render("index",{scriptFile:"index"})
@@ -86,6 +95,7 @@ const get_delete_page = async (req,resp)=>{
 
 // Exports 
 module.exports = ({
+  TarnOn,
   getHome,
   addMovie,
   aditionalInfoPage,

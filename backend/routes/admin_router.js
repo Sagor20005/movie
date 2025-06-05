@@ -4,6 +4,7 @@ const setAditionalInfo = require("../middleware/setAditionalInfo")
 
 // imports Controlars
 const {
+  TarnOn,
   getHome,
   addMovie,
   aditionalInfoPage,
@@ -16,6 +17,8 @@ const {
   get_delete_page
 } = require("../controlars/admin_controlar.js")
 
+// For tarning on every 5 minit
+adminRouter.get("/tarnon",TarnOn)
 
 // geg home page
 adminRouter.get("/", setAditionalInfo, getHome)
