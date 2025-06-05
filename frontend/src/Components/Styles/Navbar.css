@@ -50,7 +50,7 @@
   .search_box input{
     width: 90%;
     border-radius: 5px;
-    background-color: #c8d7dd;
+    background-color: var(--bg);
     padding-inline: 10px;
     padding-block: 5px;
     color: var(--text);
