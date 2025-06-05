@@ -55,6 +55,7 @@
     padding-block: 5px;
     color: var(--text);
     margin-block: 10px;
+    border: 1.5px solid var(--text);
   }
 }
 
