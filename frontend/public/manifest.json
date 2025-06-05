@@ -1,6 +1,6 @@
 {
-  "short_name": "Simple App",
-  "name": "A simple app",
+  "short_name": "Free Movies",
+  "name": "A movie downloader website. Unlimited free movie download without add.",
   "icons": [
     {
       "src": "favicon.ico",
