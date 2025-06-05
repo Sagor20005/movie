@@ -26,7 +26,7 @@ function Tranding(){
     // setup animation 
     ScrollAbleEl.current.style.animation = `animatemove ${contentCounts*3}s infinite`
     
-    let css = ""
+    let css = "@keyframes animatemove{"
     const parStep = fullWidth/contentCounts
     const parParcent = 95/(contentCounts-1)
 
