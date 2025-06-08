@@ -38,7 +38,7 @@ function Content(){
               <span>{state?.Year}</span>
               <span>{state?.Country}</span>
               <span>{state?.Runtime}{state?.Runtime && "⏱️"}</span>
-              <span>{state?.Genre}</span>
+              <span>{state?.Genre.join(", ")}</span>
               <span>{state?.Type}</span>
             </div>
           </div>

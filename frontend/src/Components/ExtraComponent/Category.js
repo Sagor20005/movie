@@ -25,7 +25,7 @@ function Category(){
   
   return(
     <div className="category_component">
-      <div className="categorys_div">
+     {/* <div className="categorys_div">
         <h4>categorys</h4>
         <ul onClick={ (e)=> handleLiClick(e,"Category") } className="categorys">
           {
@@ -34,7 +34,7 @@ function Category(){
             })
           }
         </ul>
-      </div>
+      </div> */}
       <div className="genres_div" >
         <h4>genres</h4>
         <ul onClick={ (e)=> handleLiClick(e,"Genre") } className="genres">

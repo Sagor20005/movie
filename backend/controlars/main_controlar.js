@@ -48,14 +48,14 @@ const addMovie = async (req, resp)=> {
       imdbRating: req.body.imdbRating,
       imdbVotes: req.body.imdbVotes,
       imdbID: req.body.imdbID,
-      Type: req.body.Type.toLowerCase(),
+      Type: req.body.Type?.toLowerCase(),
       Images: req.body.Images ? JSON.parse(req.body.Images) : undefined,
       Downloads:  req.body.Downloads ? JSON.parse(req.body.Downloads) : undefined,
       New: req.body.New  ? true : false,
       Trand: req.body.Trand  ? true : false,
       Poster: req.body.Poster,
       AutoShow: req.body.AutoShow ? true : false,
-      Category: req.body.Category.toLowerCase(),
+      Category: req.body.Category?.toLowerCase(),
       UploadedImageIds: req.body.UploadedImageIds ? JSON.parse(req.body.UploadedImageIds) : undefined
     }
     
