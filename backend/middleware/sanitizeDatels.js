@@ -4,7 +4,7 @@ function sanitizeDatels(req,resp,next){
   
   try{
     // must bee field list
-    const filedArray = ["Poster","Title","Genre","Language","Type","AutoShow","Category"];
+    const filedArray = ["Poster","Title","Genre","AutoShow"];
     // cheak all are avleable
     const emptyFields = []
     filedArray.forEach((fild)=>{
