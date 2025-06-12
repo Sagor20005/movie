@@ -33,7 +33,7 @@ function ContentHome(){
         {
           SeparateProductAreay(contents,12)[index].map((content,i)=>{
             return(
-              <div key={i} onClick={()=>Navigate("/content",{state:content})} className="content">
+              <div key={i} onClick={()=>Navigate(`/content/${content.Title}`,{state:content})} className="content">
                 <div className="image">
                   <img src={content.Poster} alt={content.Title}/>
                 </div>
@@ -55,7 +55,7 @@ function ContentHome(){
   useEffect(()=>{
     // function call
     rendar(0)
-  },[dispatch,contents,isLodding,isError])
+  },[contents,isLodding,isError])
   
   function handlePageination(e){
     if(e.nodeName === "LI"){

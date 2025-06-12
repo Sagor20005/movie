@@ -27,7 +27,7 @@ function NewUpdate(){
    const Html = newContents.map((con,i)=>{
       if(con.New){
         return(
-        <div key={i} onClick={()=>Navigate("/content",{state:con})} className="list_con">
+        <div key={i} onClick={()=>Navigate(`/content/${con.Title}`)} className="list_con">
             <img src={con.Poster} alt={con.Title}/>
             <div>
               <p>{con.Title}</p>

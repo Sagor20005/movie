@@ -157,7 +157,7 @@ document.querySelector("#add_download_link").addEventListener("click", handleDow
 
 
 
-// Add images section start
+// ___________Add images section start
 const imagesFileInput = document.querySelector("#images_file_input")
 const imagesInput = document.querySelector("#image_input")
 const addedImageBox = document.querySelector("#added_images")
@@ -175,11 +175,12 @@ imagesFileInput.addEventListener("change", async (e)=>{
     response = await response.json()
     loaderAlertClose()
     if(response && response.isOk){
-      ImagesList.push(response.url)
+      ImagesList.unshift(response.url)
       uploadRecordIds.push(response.recordId && response.recordId)
-      const img = document.createElement("img")
-      img.src = response.url
-      addedImageBox.appendChild(img)
+      // const img = document.createElement("img")
+      // img.src = response.url
+      // addedImageBox.appendChild(img)
+      renderImages()
       console.log(ImagesList)
       console.log(uploadRecordIds)
     }
@@ -193,16 +194,48 @@ imagesFileInput.addEventListener("change", async (e)=>{
   }
   
 })
-function addImageUrl(){
+addImageBtn.addEventListener("click",()=>{
   if(imagesInput.value && imagesInput.value.includes("http")){
-    ImagesList.push(imagesInput.value)
+    ImagesList.unshift(imagesInput.value)
+    renderImages()
+  }
+})
+// function addImageUrl(){
+//   if(imagesInput.value && imagesInput.value.includes("http")){
+//     ImagesList.push(imagesInput.value)
+//     const img = document.createElement("img")
+//     img.src = imagesInput.value
+//     const div = document.createElement("div")
+//     div.classList.add("image_aria")
+//     div.innerHTML = `<i class="fa-solid fa-minus"></i>`
+//     div.appendChild(img)
+//     addedImageBox.appendChild(div)
+//   }
+// }
+function renderImages(){
+  addedImageBox.innerHTML = ""
+  ImagesList.forEach((img_url)=>{
     const img = document.createElement("img")
-    img.src = imagesInput.value
-    addedImageBox.appendChild(img)
+    img.src = img_url
+    const div = document.createElement("div")
+    div.classList.add("image_aria")
+    div.innerHTML = `<i class="fa-solid fa-minus"></i>`
+    div.appendChild(img)
+    addedImageBox.appendChild(div)
+  })
+}
+// delete image FUNCTIONALITY
+addedImageBox.addEventListener("click",(e=>deleteAImage(e)))
+function deleteAImage(e){
+  const isDeleteBtn = e.target.className.includes("fa-minus") ? true : false
+  if(isDeleteBtn){
+    const image_url = e.target.nextElementSibling.src
+    const index = ImagesList.findIndex(i=>i===image_url)
+    ImagesList.splice(index,1)
+    renderImages()
   }
 }
-addImageBtn.addEventListener("click",addImageUrl)
-// Add images section end
+// _______________Add images section end
 
 
 

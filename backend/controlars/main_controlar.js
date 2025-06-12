@@ -446,6 +446,27 @@ const UpdateContent = async (req,resp)=>{
   }
 }
 
+// GET CONTENT BY TITLE 
+const getContentByTitle = async (req,resp)=>{
+  console.log("hittt")
+  try{
+    const Title = req.params.title
+    const data = await movieColl.findOne({Title})
+    console.log(data)
+    resp.status(200).json({
+      isOk:true,
+      data
+    })
+  }catch(err){
+    console.log(err)
+    resp.status(200).json({
+      isOk:false,
+      msg:err.message
+    })
+  }
+}
+
+
 
 // Export Controlars
 module.exports = {
@@ -465,5 +486,6 @@ module.exports = {
   GetSettings,
   UpdateSettings,
   DeleteImageById,
-  UpdateContent
+  UpdateContent,
+  getContentByTitle
 }

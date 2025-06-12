@@ -1,6 +1,6 @@
 .home_overly{
-  height: 100dvh;
-  width: 100dvw;
+  height: 100vh;
+  width: 100vw;
   background-color: var(--text);
   position: fixed;
   top: 0;
@@ -14,6 +14,12 @@
   width: 100%;
   max-width: 500px;
   height: auto;
+}
+.home_overly .latxt{
+  position: absolute;
+  top: 100px;
+  color: #20f508;
+  text-align: center;
 }
 @media (min-width:500px){
   .home_body{

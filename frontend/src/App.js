@@ -15,6 +15,7 @@ function App() {
   // Get setting
   const { settings } = useSelector((state)=> state.setting )
   
+  
   function SetTheamColors(colors){
     // root element
     const root = document.documentElement
@@ -26,8 +27,8 @@ function App() {
     root.style.setProperty("--link",colors.link_color)
     root.style.setProperty("--small_text",colors.small_text_color)
     root.style.setProperty("--logo",colors.logo_color)
-    
   }
+  
   
   useEffect(()=>{
     if(settings && settings.Colors) SetTheamColors(settings.Colors)
@@ -44,7 +45,7 @@ function App() {
       <div className="App_body">
           <Routes>
             <Route path="/" element={<Home />}/>
-            <Route path="/content" element={<Content />}/>
+            <Route path="/content/:title" element={<Content />}/>
             <Route path="/download/:id" element={<Download />}/>
             <Route path="/dstart/:id" element={<DownloadStart />}/>
           </Routes>

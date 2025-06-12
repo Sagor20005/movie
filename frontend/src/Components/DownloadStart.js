@@ -22,7 +22,7 @@ function DownloadStart(){
       }
       
     }catch(err){
-      console.log(err)
+      setMsg("faild to download.")
     }
   }
   function Dowloading(url){

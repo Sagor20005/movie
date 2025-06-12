@@ -22,7 +22,8 @@ const {
   GetSettings,
   UpdateSettings,
   DeleteImageById,
-  UpdateContent
+  UpdateContent,
+  getContentByTitle
 } = require("../controlars/main_controlar")
 
 
@@ -79,6 +80,9 @@ router.put("/settings", UpdateSettings)
 
 // Update content 
 router.put("/update-movie", UpdateContent)
+
+// GET MOVIE BY TITLE 
+router.get("/movie-by-title/:title",getContentByTitle)
 
 
 // export

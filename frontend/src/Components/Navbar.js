@@ -16,6 +16,7 @@ function Navbar(){
   
   // subscribe redux store 
   const { showCategoryComponent, showSearchInput, settings } = useSelector((state)=>state.setting)
+  const { data } = useSelector((state)=> state.aditionalData )
   
   const dispatch = useDispatch()
   
@@ -49,7 +50,7 @@ function Navbar(){
         
         <div className="icons">
           <FontAwesomeIcon onClick={MenuHandler} icon={ showCategoryComponent ? faXmark : faBars } />
-          <Link className="navLogo" to="/">{settings?.Site_url ? settings.Site_name : "MovieFlex"}</Link>
+          <Link className="navLogo" to="/">{settings?.Site_url ? settings.Site_name : "NewFlix"}</Link>
           <form onSubmit={e=>FormSubmit(e)} className="search_box">
             <input name="s" className="search_input" type="search" placeholder="Search.." />
             <button>Search</button>

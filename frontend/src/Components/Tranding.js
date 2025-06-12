@@ -1,9 +1,11 @@
 import "./Styles/Tranding.css"
-import React,{useEffect, useRef } from "react"
+import {useEffect, useRef, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useSelector } from 'react-redux'
 
 function Tranding(){
+  const [domComplete,setDomComplete] = useState(false)
+  const [mainHtml,setHtml] = useState(null)
   
   // get data from redux storr
   const TrandingCon = useSelector((state)=> state.moviesList.contents)
@@ -14,10 +16,9 @@ function Tranding(){
   const ScrollAbleEl = useRef(null)
   
   useEffect(()=>{
-    setTimeout(()=>{
-      addAnimationCss(ScrollAbleEl.current.scrollWidth,ScrollAbleEl.current.children.length )
-    },1000)
-  },[])
+    if(!mainHtml) htmlGenaretor()
+    if(domComplete) addAnimationCss(ScrollAbleEl.current.scrollWidth,ScrollAbleEl.current.children.length )
+  },[domComplete,mainHtml,TrandingCon])
   
   // what to rendar 
   function addAnimationCss (fullWidth, contentCounts) {
@@ -50,13 +51,14 @@ function Tranding(){
 }
   
   
-  let Html = ""
+  function htmlGenaretor(){
+    let Html = null
   if(TrandingCon && TrandingCon.length > 0){
     Html = TrandingCon.map((con,i)=>{
       if(con.Trand){
         return(
           <div key={i} className="t_content">
-            <img onClick={()=>Navigate("/content",{state:con})} src={con.Images[0]} alt={con.Title}/>
+            <img onClick={()=>Navigate("/content/"+con.Title)} src={con.Images[0]} alt={con.Title}/>
             <div className="con_dtl">
               <p>{con.Title}</p>
               <p>{con.Released}</p>
@@ -64,8 +66,12 @@ function Tranding(){
           </div>
           )
       }
-      return null
     })
+    setHtml(Html)
+    setTimeout(()=>{
+      setDomComplete(true)
+    },1000)
+  }
   }
   
   
@@ -74,7 +80,7 @@ function Tranding(){
     <>
       <div className="tranding_section">
         <div ref={ScrollAbleEl} className="scroll_containar">
-           {Html}
+           {mainHtml}
         </div>
        
       </div>

@@ -1,13 +1,28 @@
 import "./Styles/Content.css"
 import Navbar from "./Navbar"
 import NewUpdate from "./NewUpdate"
-import { useLocation, useNavigate } from "react-router-dom"
-import {useEffect} from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import {useEffect,useState} from "react"
 import { Helmet } from 'react-helmet-async';
 
 function Content(){
-  const { state } = useLocation()
+  const api_url = process.env.REACT_APP_API_URL
+  const [contentData,setCdata] = useState({})
   const Navigate = useNavigate()
+  const {title} = useParams()
+  
+  async function fetchContent(title){
+    try{
+      let response = await fetch(`${api_url}/movie-by-title/${title.toLowerCase()}`)
+      response = await response.json()
+      console.log(response)
+      if(response && response.isOk){
+        setCdata(response.data)
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
   
   useEffect(()=>{
     window.scrollTo({
@@ -15,31 +30,35 @@ function Content(){
       left: 0,
       behavior: 'smooth' // Optional, adds smooth scrolling
     });
-  })
+    // Call to get content
+     fetchContent(title)
+  },[])
   
   return(
     <>
       <Navbar />
       <div className="content_body">
         <Helmet>
-          <title>{state?.Title}</title>
+          <title>{contentData?.Title}</title>
+          <meta name="description" content={ `${contentData?.Title} ${ contentData?.Type || "" } download free. without login & signup. first download no ads!` } />
+          <meta name="keywords" content={`${contentData?.Title} ${ contentData?.Type || "" } download, bangla movie download, hindi movie download`} />
         </Helmet>
         <div className="s_content_containar">
         
         {/* Top box */}
         <div className="top_box">
           <div className="bannar">
-            <img src={state?.Poster} alt={state?.Title}/>
+            <img src={contentData?.Poster} alt={contentData?.Title}/>
           </div>
           <div className="moreDtl">
-            <p>{state?.Title}</p>
+            <p>{contentData?.Title}</p>
             <div className="aditional_dtl">
-              <span>{state?.Released}</span>
-              <span>{state?.Year}</span>
-              <span>{state?.Country}</span>
-              <span>{state?.Runtime}{state?.Runtime && "⏱️"}</span>
-              <span>{state?.Genre.join(", ")}</span>
-              <span>{state?.Type}</span>
+              <span>{contentData?.Released}</span>
+              <span>{contentData?.Year}</span>
+              <span>{contentData?.Country}</span>
+              <span>{contentData?.Runtime}{contentData?.Runtime && "⏱️"}</span>
+              <span>{contentData?.Genre?.join(", ")}</span>
+              <span>{contentData?.Type}</span>
             </div>
           </div>
         </div>
@@ -52,26 +71,26 @@ function Content(){
           </div>
           
           <h3>Cast</h3>
-          <p> <b>Actors:</b> {state?.Actors}</p>
-          <p> <b>Writer:</b> {state?.Writer}</p>
-          <p> <b>Director:</b> {state?.Director}</p>
+          <p> <b>Actors:</b> {contentData?.Actors}</p>
+          <p> <b>Writer:</b> {contentData?.Writer}</p>
+          <p> <b>Director:</b> {contentData?.Director}</p>
         
           <h3>Plot</h3>
           <p>
-            {state?.Plot}
+            {contentData?.Plot}
           </p>
           
           <h3>IMDB Ratting</h3>
-          <p>Metascore: {state?.Metascore}+</p>
-          <p>imdbRating: {state?.imdbRating}+</p>
-          <p>imdbVotes: {state?.imdbVotes}+</p>
-          <p>imdbID: {state?.imdbID}</p>
+          <p>Metascore: {contentData?.Metascore}+</p>
+          <p>imdbRating: {contentData?.imdbRating}+</p>
+          <p>imdbVotes: {contentData?.imdbVotes}+</p>
+          <p>imdbID: {contentData?.imdbID}</p>
           
           <div className="extra_images_containar">
             <h3>Images</h3>
             <div className="extra_images">
               {
-                state?.Images.map((img)=>{
+                contentData?.Images?.map((img)=>{
                   return <img key={img} src={img} alt="ss"/>
                 })
               }
@@ -94,10 +113,10 @@ function Content(){
          
           <tbody>
             {
-            state?.Downloads.map((link)=>{
+            contentData?.Downloads?.map((link)=>{
               return(
               <tr key={link._id}>
-                <td><button onClick={()=>Navigate(`/download/${state._id}`)} >Download</button></td>
+                <td><button onClick={()=>Navigate(`/download/${contentData._id}`)} >Download</button></td>
                 <td>{link.quality}</td>
                 <td>{link.language}</td>
                 <td>{link.size}</td>

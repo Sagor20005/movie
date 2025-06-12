@@ -29,7 +29,7 @@ function SearchResult(){
       {
         separatedContent[pageIndex].map((content)=>{
           return(
-          <div onClick={()=>Navigate("/content",{ state:content })} className="content">
+          <div onClick={()=>Navigate("/content/"+content.Title)} className="content">
             <div className="image">
               <img src={content.Poster} alt={content.Title}/>
             </div>

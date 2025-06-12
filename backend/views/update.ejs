@@ -74,7 +74,10 @@
           <legend>Add image</legend>
           <div id="added_images">
             <% data?.Images.forEach((image)=>{ %>
-              <img src="<%= image %>">
+              <div class="image_aria">
+                <i class="fa-solid fa-minus"></i>
+                <img src="<%= image %>">
+              </div>
             <% }) %>
           </div>
           <input id="images_file_input" type="file" accept="image/*">
