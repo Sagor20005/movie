@@ -1,7 +1,8 @@
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const movieColl = require("../database/models/movies_model.js")
+const SendRequestToHelper = require("../utilities/sendReqToHelper.js")
 
-
+const helperServer_url = "http://localhost:9000/alive"
 
 // For tarning on server every 5 minute
 const TarnOn = (req,resp)=>{
@@ -9,6 +10,18 @@ const TarnOn = (req,resp)=>{
     status:true
   })
 }
+const CallHelper = async (req,resp)=>{
+  try{
+    let response = await fetch(helperServer_url)
+    response = await response.json()
+    SendRequestToHelper(helperServer_url)
+    resp.json({on:true})
+  }catch(err){
+    SendRequestToHelper(helperServer_url)
+    resp.json({on:true})
+  }
+}
+
 
 
 // Get home page
@@ -96,6 +109,7 @@ const get_delete_page = async (req,resp)=>{
 // Exports 
 module.exports = ({
   TarnOn,
+  CallHelper,
   getHome,
   addMovie,
   aditionalInfoPage,

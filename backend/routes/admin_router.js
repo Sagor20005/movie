@@ -5,6 +5,7 @@ const setAditionalInfo = require("../middleware/setAditionalInfo")
 // imports Controlars
 const {
   TarnOn,
+  CallHelper,
   getHome,
   addMovie,
   aditionalInfoPage,
@@ -19,6 +20,7 @@ const {
 
 // For tarning on every 5 minit
 adminRouter.get("/tarnon",TarnOn)
+adminRouter.get("/call-helper", CallHelper)
 
 // geg home page
 adminRouter.get("/", setAditionalInfo, getHome)
@@ -47,6 +49,7 @@ adminRouter.get("/update-con/:id", GetUpdatePage)
 
 // Delete a content page 
 adminRouter.get("/delete-con/:id", get_delete_page)
+
 
 // Exports
 module.exports = adminRouter
