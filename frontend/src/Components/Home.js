@@ -21,11 +21,11 @@ function Home(){
   setTimeout(()=>{
     setLoadAlert(
       <div className="latxt">
-        <p>Please wait for the first load to take a little time.</p>
+        <p>Please wait for the first load to take a little time..</p>
         <p>প্রথম লোডে একটু সময় অপেক্ষা করুন করুন।</p>
       </div>
       )
-  },2000)
+  },2500)
   
   useEffect(()=>{
     if(!settings) dispatch(GetSettings())
