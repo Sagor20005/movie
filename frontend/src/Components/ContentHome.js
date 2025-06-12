@@ -53,7 +53,7 @@ function ContentHome(){
   }
   
   useEffect(()=>{
-    // function call
+    // function call to render
     rendar(0)
   },[contents,isLodding,isError])
   
