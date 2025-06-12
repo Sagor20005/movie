@@ -2,7 +2,7 @@ const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const movieColl = require("../database/models/movies_model.js")
 const SendRequestToHelper = require("../utilities/sendReqToHelper.js")
 
-const helperServer_url = "http://localhost:9000/alive"
+const helperServer_url = "https://movie-helper-api.onrender.com/alive"
 
 // For tarning on server every 5 minute
 const TarnOn = (req,resp)=>{
