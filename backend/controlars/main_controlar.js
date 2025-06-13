@@ -374,7 +374,6 @@ const DeleteUnwantedImage = async (req,resp)=>{
 
 // Delete image by id one by one 
 const DeleteImageById = async (req,resp)=>{
-  console.log("start delete image", req.params.id)
   const { id } = req.params
   try{
     const DelRecord = await imageRecordColl.findOneAndDelete({_id:id})
@@ -448,17 +447,14 @@ const UpdateContent = async (req,resp)=>{
 
 // GET CONTENT BY TITLE 
 const getContentByTitle = async (req,resp)=>{
-  console.log("hittt")
   try{
     const Title = req.params.title
-    const data = await movieColl.findOne({Title})
-    console.log(data)
+    const data = await movieColl.findOne({ Title: { $regex: Title } })
     resp.status(200).json({
       isOk:true,
       data
     })
   }catch(err){
-    console.log(err)
     resp.status(200).json({
       isOk:false,
       msg:err.message
