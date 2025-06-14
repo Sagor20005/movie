@@ -17,6 +17,7 @@ const {
   fildUpdateor,
   getNewest,
   GetById,
+  GetLinkById,
   GetUnwantedImage,
   DeleteUnwantedImage,
   GetSettings,
@@ -62,6 +63,9 @@ router.get("/newest", getNewest)
 
 // Get by id
 router.get("/getbyid/:id", GetById)
+
+// Get link by id 
+router.get("/getlinkbyid/:id/:linkid", GetLinkById)
 
 // Get unwanted_image
 router.get("/unwanted_image", GetUnwantedImage)

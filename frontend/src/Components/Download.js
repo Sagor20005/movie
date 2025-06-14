@@ -1,5 +1,5 @@
 import "./Styles/Download.css"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 function Download(){
   const params = useParams()
@@ -31,7 +31,7 @@ function Download(){
         
         <div className="download_box">
           <h3>{count > 0 ? "Genarating Link." : "Rady to download."}</h3>
-          <button onClick={()=> !count>0 && Navigate(`/dstart/${params.id}`) } >{count > 0 ? "Procecing!" : "Download now."}</button>
+          <button > { count>0 ? "Please Wait." : <Link target="_blank" to={`/dstart/${params.id}/${params.linkid}`} >Download now.</Link> } </button>
         </div>
         
       </div>

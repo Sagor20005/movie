@@ -1,24 +1,24 @@
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
 import { useEffect, useState } from "react"
 function DownloadStart(){
   const params = useParams()
+  const Navigate = useNavigate()
   
-  const server = `${process.env.REACT_APP_API_URL}/getbyid`
+  const server = `${process.env.REACT_APP_API_URL}/getlinkbyid`
   
   const [message,setMsg] = useState("")
   
   
-  async function getContentUrl(id){
+  async function getContentUrl(id,link_id){
     try{
-      let response = await fetch(server+"/"+id)
-      if(!response.ok) return false
+      let response = await fetch(server+"/"+id+"/"+link_id)
+      if(!response.ok) window.close()
       response = await response.json()
       if(response && response.isOk){
         setMsg("Download Started.")
-        return response.data.Downloads[0].url
+        return response.data
       }else{
         setMsg("faild to download.")
-        return null
       }
       
     }catch(err){
@@ -32,7 +32,7 @@ function DownloadStart(){
   }
   
   useEffect(()=>{
-    Dowloading(getContentUrl(params.id))
+    Dowloading(getContentUrl(params.id,params.linkid))
   },[])
   
   return(

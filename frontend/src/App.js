@@ -46,8 +46,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/content/:title" element={<Content />}/>
-            <Route path="/download/:id" element={<Download />}/>
-            <Route path="/dstart/:id" element={<DownloadStart />}/>
+            <Route path="/download/:id/:linkid" element={<Download />}/>
+            <Route path="/dstart/:id/:linkid" element={<DownloadStart />}/>
           </Routes>
       </div>
       <Footer />

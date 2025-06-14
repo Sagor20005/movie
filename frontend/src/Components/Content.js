@@ -1,7 +1,7 @@
 import "./Styles/Content.css"
 import Navbar from "./Navbar"
 import NewUpdate from "./NewUpdate"
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, Link } from "react-router-dom"
 import {useEffect,useState} from "react"
 import { Helmet } from 'react-helmet-async';
 
@@ -116,7 +116,7 @@ function Content(){
             contentData?.Downloads?.map((link)=>{
               return(
               <tr key={link._id}>
-                <td><button onClick={()=>Navigate(`/download/${contentData._id}`)} >Download</button></td>
+                <td> <Link target="_blank" to={`/download/${contentData._id}/${link._id}`}  >Download</Link> </td>
                 <td>{link.quality}</td>
                 <td>{link.language}</td>
                 <td>{link.size}</td>

@@ -334,6 +334,31 @@ const GetById = async (req,resp)=>{
   }
 }
 
+// Get content by id
+const GetLinkById = async (req,resp)=>{
+  try{
+    const response = await movieColl.findOne({_id:req.params.id})
+    if(response){
+      const link = (response.Downloads.filter((l)=> `${l._id}` === req.params.linkid ))[0].url
+      resp.status(200).json({
+        isOk:true,
+        data: link
+      })
+    }else{
+      resp.status(500).json({
+        isOk:false,
+        msg:"Not found."
+      })
+    }
+    
+  }catch(err){
+    resp.status(500).json({
+      isOk:false,
+      msg:"Server error"
+    })
+  }
+}
+
 // Get unwanted images 
 const GetUnwantedImage = async (req,resp)=>{
   try{
@@ -477,6 +502,7 @@ module.exports = {
   fildUpdateor,
   getNewest,
   GetById,
+  GetLinkById,
   GetUnwantedImage,
   DeleteUnwantedImage,
   GetSettings,
