@@ -5,7 +5,7 @@ function Download(){
   const params = useParams()
   const Navigate = useNavigate()
   
-  const [ count, setCount ] = useState(10)
+  const [ count, setCount ] = useState(5)
   
   setTimeout(()=>{
     if(count>0) setCount(count-1)

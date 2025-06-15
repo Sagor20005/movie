@@ -24,8 +24,7 @@ function Footer(){
         <div className="f_quick_links">
           <h4>Quick Links.</h4>
           <ul>
-            <li> <Link to="/">Land page</Link> </li>
-            <li> <Link to="/">Home Content</Link> </li>
+            <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/">Contact us</Link> </li>
             <li> <Link to="/">How to Use</Link> </li>
           </ul>
@@ -35,7 +34,7 @@ function Footer(){
         <div className="f_bottom">
           <p>&copy; 2025 Jakareya Haldar. All rights reserved.</p>
           <div className="social">
-            <Link to="#">Facebook</Link>
+            <Link to="https://facebook.com/groups/4021978274757581/">Facebook</Link>
             <Link to="#">Tiktok</Link>
             <Link to="#">Youtube</Link>
           </div>

@@ -1,0 +1,10 @@
+.download_start_containar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.download_start_containar img{
+  width: 100%;
+  max-width: 500px;
+}

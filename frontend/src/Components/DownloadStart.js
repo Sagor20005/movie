@@ -1,5 +1,7 @@
 import {useParams, useNavigate} from "react-router-dom"
 import { useEffect, useState } from "react"
+import "./Styles/DownloadStart.css"
+import instructionImage from "./Assets/instruction.jpg"
 function DownloadStart(){
   const params = useParams()
   const Navigate = useNavigate()
@@ -12,7 +14,6 @@ function DownloadStart(){
   async function getContentUrl(id,link_id){
     try{
       let response = await fetch(server+"/"+id+"/"+link_id)
-      if(!response.ok) window.close()
       response = await response.json()
       if(response && response.isOk){
         setMsg("Download Started.")
@@ -26,8 +27,8 @@ function DownloadStart(){
     }
   }
   function Dowloading(url){
-    url.then((url)=>{
-      window.open(url,"_blank")
+    url.then((data)=>{
+      if (data) window.open(data,"_blank")
     })
   }
   
@@ -37,7 +38,10 @@ function DownloadStart(){
   
   return(
     <>
-      <h1 style={{margin: "30px"}} >{message}</h1>
+     <div className="download_start_containar" >
+       <h1 style={{margin: "30px"}} >{message}</h1>
+       <img src={instructionImage} alt="helper" />
+     </div>
     </>
     )
 }
