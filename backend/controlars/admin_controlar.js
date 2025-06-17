@@ -1,5 +1,6 @@
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const movieColl = require("../database/models/movies_model.js")
+const adminAuthColl = require("../database/models/authAdmin.js")
 const SendRequestToHelper = require("../utilities/sendReqToHelper.js")
 
 const helperServer_url = "https://movie-helper-api.onrender.com/alive"
@@ -106,6 +107,46 @@ const get_delete_page = async (req,resp)=>{
 }
 
 
+// GET LOGIN PAGE 
+const GetLoginPage = (req,resp)=>{
+  resp.render("login")
+}
+
+// LOGIN 
+const Login = async (req,resp)=>{
+  try{
+    const auth = await adminAuthColl.find()
+    // if not exist
+    if(auth && auth.length < 1){
+      const data = new adminAuthColl(req.body)
+      const saved = await data.save()
+      resp.json({
+        isOk:true,
+        token:saved._id
+      })
+    }else{
+    // if exist 
+    const isValid = await adminAuthColl.findOne(req.body)
+    if(isValid){
+      resp.status(200).json({
+        isOk:true,
+        token:isValid._id
+      })
+    }else{
+      resp.status(200).json({
+        isOk:false,
+        msg:"Wrong please try again!"
+      })
+    }
+    }
+  }catch(err){
+    resp.status(200).json({
+      isOk:false,
+      msg:err.message
+    })
+  }
+}
+
 // Exports 
 module.exports = ({
   TarnOn,
@@ -119,5 +160,7 @@ module.exports = ({
   unwanted_image_page,
   GetSettingPage,
   GetUpdatePage,
-  get_delete_page
+  get_delete_page,
+  GetLoginPage,
+  Login
 })
