@@ -32,7 +32,7 @@ function Content(){
     });
     // Call to get content
      fetchContent(title)
-  },[])
+  },[title])
   
   return(
     <>
