@@ -13,7 +13,7 @@ const authCheak = async (req,resp,next)=>{
       }
     }catch(err){}
   }else{
-    resp.render("login")
+    resp.render("login");
   }
 }
 
