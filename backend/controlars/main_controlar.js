@@ -8,6 +8,22 @@ const { SitemapStream } = require('sitemap');
 const devolopmentState = process.env.STATE
 
 
+// async function createUrl(){
+//   try{
+//     const movies = await movieColl.find()
+//     movies.forEach(async (movie)=>{
+//       const u = await movieColl.findOneAndUpdate(
+//         {_id:movie._id},{url_name: movie.Title.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '-').toLowerCase() }
+//         )
+//       console.log(u)
+//     })
+//   }catch(err){
+//     console.log(err)
+//   }
+// }
+// createUrl()
+
+
 // All controlars
 const ShowMovies = async (req,resp)=>{
   try{
