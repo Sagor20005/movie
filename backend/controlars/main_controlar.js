@@ -3,6 +3,7 @@ const settingColl = require("../database/models/settings.js")
 const imageRecordColl = require("../database/models/imageRecord.js")
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const imageKit = require("../utilities/imageKitSetup.js")
+const { SitemapStream } = require('sitemap');
 
 const devolopmentState = process.env.STATE
 
@@ -488,6 +489,38 @@ const getContentByTitle = async (req,resp)=>{
 }
 
 
+// GET SITEMAP.XML
+const GetSiteMap = async (req, res) => {
+  try {
+    
+    // getting movie list
+    const movies = await movieColl.find().sort({ createdAt: -1 })
+    
+    res.header('Content-Type', 'application/xml');
+
+    const smStream = new SitemapStream({ hostname: 'https://newflex.vercel.app' });
+    smStream.pipe(res);
+
+    // 🏠 হোমপেজ
+    smStream.write({ url: '/', changefreq: 'daily', priority: 1.0 });
+
+    // 🎬 Movie routes
+    movies.forEach(movie => {
+      smStream.write({
+        url: `/content/${movie.Title.toLowerCase()}`,
+        changefreq: 'weekly',
+        priority: 0.8
+      });
+    });
+
+    smStream.end();
+  } catch (err) {
+    console.error('Sitemap Error:', err);
+    res.status(500).end();
+  }
+}
+
+
 
 // Export Controlars
 module.exports = {
@@ -509,5 +542,6 @@ module.exports = {
   UpdateSettings,
   DeleteImageById,
   UpdateContent,
-  getContentByTitle
+  getContentByTitle,
+  GetSiteMap
 }

@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://movie-delta-wheat.vercel.app/sitemap.xml
+Sitemap: https://movie-by36.onrender.com/sitemap.xml

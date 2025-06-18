@@ -5,8 +5,6 @@ const authCheak = require("../middleware/authCheak.js")
 
 // imports Controlars
 const {
-  TarnOn,
-  CallHelper,
   getHome,
   addMovie,
   aditionalInfoPage,
@@ -20,10 +18,6 @@ const {
   GetLoginPage,
   Login
 } = require("../controlars/admin_controlar.js")
-
-// For tarning on every 5 minit
-adminRouter.get("/tarnon",TarnOn)
-adminRouter.get("/call-helper", CallHelper)
 
 // geg home page
 adminRouter.get("/",authCheak, setAditionalInfo, getHome)

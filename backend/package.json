@@ -17,6 +17,7 @@
     "express-fileupload": "^1.5.1",
     "express-form-data": "^2.0.23",
     "imagekit": "^6.0.0",
-    "mongoose": "^8.13.2"
+    "mongoose": "^8.13.2",
+    "sitemap": "^8.0.0"
   }
 }

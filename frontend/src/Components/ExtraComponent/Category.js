@@ -12,6 +12,13 @@ function Category(){
   const { data } = useSelector((state)=> state.aditionalData )
   
   function handleLiClick(e,type){
+    
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth' // Optional, adds smooth scrolling
+    });
+    
     if(e.target.nodeName === "LI"){
       dispatch(GetBySearch({
         searchBy: type,
