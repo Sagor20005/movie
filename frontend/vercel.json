@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/sitemap.xml",
-      "destination": "https://movie-by36.onrender.com/sitemap.xml"
-    }
-  ]
-}
