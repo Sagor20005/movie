@@ -58,7 +58,7 @@ function Tranding(){
       if(con.Trand){
         return(
           <div key={i} className="t_content">
-            <img onClick={()=>Navigate("/content/"+con.Title)} src={con.Images[0]} alt={con.Title}/>
+            <img onClick={()=>Navigate("/content/"+con.url_name)} src={con.Images[0]} alt={con.Title}/>
             <div className="con_dtl">
               <p>{con.Title}</p>
               <p>{con.Released}</p>

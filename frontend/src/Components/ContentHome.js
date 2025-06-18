@@ -33,7 +33,7 @@ function ContentHome(){
         {
           SeparateProductAreay(contents,12)[index].map((content,i)=>{
             return(
-              <div key={i} onClick={()=>Navigate(`/content/${content.Title}`,{state:content})} className="content">
+              <div key={i} onClick={()=>Navigate(`/content/${content.url_name}`,{state:content})} className="content">
                 <div className="image">
                   <img src={content.Poster} alt={content.Title}/>
                 </div>

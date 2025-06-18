@@ -475,7 +475,7 @@ const UpdateContent = async (req,resp)=>{
 const getContentByTitle = async (req,resp)=>{
   try{
     const Title = req.params.title
-    const data = await movieColl.findOne({ Title: { $regex: Title } })
+    const data = await movieColl.findOne({ url_name: { $regex: Title } })
     resp.status(200).json({
       isOk:true,
       data
@@ -507,7 +507,7 @@ const GetSiteMap = async (req, res) => {
     // 🎬 Movie routes
     movies.forEach(movie => {
       smStream.write({
-        url: `/content/${movie.Title.toLowerCase()}`,
+        url: `/content/${movie.url_name.toLowerCase()}`,
         changefreq: 'weekly',
         priority: 0.8
       });
