@@ -515,25 +515,27 @@ const GetSiteMap = async (req, res) => {
     res.header('Content-Type', 'application/xml');
 
     const smStream = new SitemapStream({ hostname: 'https://newflex.vercel.app' });
-    smStream.pipe(res);
 
-    // 🏠 হোমপেজ
-    smStream.write({ url: '/', changefreq: 'daily', priority: 1.0 });
+    smStream.write({ url: '/', priority: 1.0 });
 
-    // 🎬 Movie routes
-    movies.forEach(movie => {
+
+    for (const movie of movies) {
+      const slug = encodeURIComponent(movie.url_name);
       smStream.write({
-        url: `/content/${movie.url_name.toLowerCase()}`,
-        changefreq: 'weekly',
+        url: `/content/${slug}`,
         priority: 0.8
+        // changefreq intentionally omitted
       });
-    });
+    }
 
     smStream.end();
-  } catch (err) {
-    console.error('Sitemap Error:', err);
+    smStream.pipe(res);
+    
+  }catch(err){
+    console.error('Error generating sitemap', err);
     res.status(500).end();
   }
+    
 }
 
 

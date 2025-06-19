@@ -1,106 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://newflex.vercel.app/</loc>
-    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
-
+  <url>
+    <loc>https://newflex.vercel.app/content/subham</loc>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://newflex.vercel.app/content/bhool-chuk-maaf</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/taandob</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/kerebete</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/jaat</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/chokkor-302</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/sikandar</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/fifty-shades-freed</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/borbaad</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/thudarum</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/housefull-5</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/bachelor-point-2025-s05-episode-0108</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/jongli</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/daagi</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/kannum-kannum-kollaiyadithaal</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/retro-2025</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
   <url>
     <loc>https://newflex.vercel.app/content/tourist-family-2025</loc>
-    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
 </urlset>
