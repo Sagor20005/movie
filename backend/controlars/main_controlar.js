@@ -51,6 +51,7 @@ const addMovie = async (req, resp)=> {
     // form Data object
     const allData = {
       Title: req.body.Title.toLowerCase(),
+      url_name: req.body.Title.replace(/[^a-zA-Z0-9\s]/g, '').trim().replace(/\s+/g, '-').toLowerCase(),
       Year: req.body.Year,
       Rated: req.body.Rated,
       Released: req.body.Released,

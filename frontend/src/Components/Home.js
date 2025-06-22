@@ -38,7 +38,7 @@ function Home(){
         <Helmet>
           <title>{settings?.Site_url ? settings.Site_name : "NewFlix"} | Home</title>
           <meta name="description" content="Download latest movies & series in hd quality. Bangla, Bollywood, Hollywood, South Indian movies download. Fast & Free!"/>
-          <meta name="keywords" content="movie download, bollywood movie download, hollywood movie download, HD movies, south indian movies, free movies"/>
+          <meta name="keywords" content="newflex,bangla movie download, movie download, bollywood movie download, hollywood movie download, HD movies, south indian movies, free movies"/>
         </Helmet>
         
         {
