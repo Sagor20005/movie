@@ -3,6 +3,7 @@ const settingColl = require("../database/models/settings.js")
 const imageRecordColl = require("../database/models/imageRecord.js")
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const imageKit = require("../utilities/imageKitSetup.js")
+const postToPage = require("../utilities/page_post.js")
 const { SitemapStream } = require('sitemap');
 
 const devolopmentState = process.env.STATE
@@ -47,7 +48,6 @@ const ShowMovies = async (req,resp)=>{
 // Add new movie
 const addMovie = async (req, resp)=> {
   try {
-    console.log(req.body)
     // form Data object
     const allData = {
       Title: req.body.Title.toLowerCase(),
@@ -80,7 +80,7 @@ const addMovie = async (req, resp)=> {
     const newMovie = new movieColl(allData)
     const response = await newMovie.save()
       if(response && response._id){
-        console.log(response)
+        postToPage(response.Title,response.Images,response.url_name)
         // wait for delete change into false 
         response.UploadedImageIds.forEach(async(id)=>{
           // proti id te jeye waitfordelete false korte hobe
