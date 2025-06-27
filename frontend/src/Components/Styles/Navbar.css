@@ -57,6 +57,10 @@
     margin-block: 10px;
     border: 1.5px solid var(--text);
   }
+  .search_input input:-webkit-autofill {
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
 }
 
 .icons .search_input{

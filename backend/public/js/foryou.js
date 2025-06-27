@@ -119,6 +119,7 @@ function renderAutoShowData(datas){
     <div class="f_opar_box">
       <a href="/admin/delete-con/${data._id}"> Delete </a>
       <a href="/admin/update-con/${data._id}"> Update </a>
+      <button id="copypostbtn" onclick='create_post_data(${JSON.stringify(data)})' >Create_post</button>
     </div>
   </div>
   `
@@ -161,3 +162,44 @@ searchBar.addEventListener("submit",async (e)=>{
 })
 
 // _______________SEARCH BAR HANDLER END
+
+
+// ___________CREATE PROJECT FUNCTIONALITY START
+
+window.create_post_data = function(data){
+  if( !data || !data.Title ) return false
+  
+  const caption = `
+  🎬 ${data.Title.slice(0,1).toUpperCase() + data.Title.slice(1)} 🔥
+
+⚡সাইটে আপলোড করা হয়েছে💥
+⚡সবার আগে দেখুন 🌟
+
+✅ Quality : High Rasulation 🔔
+📥 Visit And Download Now
+
+____________________
+Movie Link 👉 https://newflex.vercel.app/content/${data.url_name}
+____________________
+
+✅ সবার আগে সকল নতুন মুভি দেখতে আমাদের সাথে যুক্ত হন 🤝
+🌐 https://newflex.vercel.app
+  `
+  
+  navigator.clipboard.writeText(caption)
+  
+  // download all images 
+  data?.Images?.forEach(async (image,i)=>{
+    const f = await fetch(image)
+    const blob = await f.blob()
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download= data.Title+ " (" + i + ").png"
+    a.click()
+  })
+  
+  
+}
+
+// ___________CREATE PROJECT FUNCTIONALITY END

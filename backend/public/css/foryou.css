@@ -79,6 +79,16 @@
     display: inline-block;
     margin-right: 5px;
   }
+  .foryou_content .f_opar_box #copypostbtn{
+    padding: 3px 5px;
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+  }
+  .foryou_content .f_opar_box #copypostbtn:hover{
+    transform: scale(0.9);
+  }
 }
 
 #search_box{
