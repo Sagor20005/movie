@@ -27,6 +27,7 @@ function App() {
     root.style.setProperty("--link",colors.link_color)
     root.style.setProperty("--small_text",colors.small_text_color)
     root.style.setProperty("--logo",colors.logo_color)
+    root.style.setProperty("--box_bg",colors.box_bg_color)
   }
   
   

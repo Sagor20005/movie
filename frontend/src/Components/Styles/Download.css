@@ -16,3 +16,8 @@
 .download_box button{
   padding: 5px 10px;
 }
+.dalert{
+  padding: 30px;
+  color: var(--title);
+  font-size: 19px;
+}

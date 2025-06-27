@@ -5,7 +5,7 @@ function Download(){
   const params = useParams()
   const Navigate = useNavigate()
   
-  const [ count, setCount ] = useState(5)
+  const [ count, setCount ] = useState(0)
   
   setTimeout(()=>{
     if(count>0) setCount(count-1)
@@ -34,6 +34,10 @@ function Download(){
           <button > { count>0 ? "Please Wait." : <Link target="_blank" to={`/dstart/${params.id}/${params.linkid}`} >Download now.</Link> } </button>
         </div>
         
+        <div className="dalert">
+          <p>Open our website in any browser to avoid the problem of not entering the link.</p>
+          <p>লিংকে ঢুকতে না পারা প্রবলেম এড়াতে ওয়েবসাইট টি যেকোনো ওয়েবসাইট খুলুন।</p>
+        </div>
       </div>
     </>
     )
