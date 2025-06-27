@@ -36,7 +36,7 @@ function Download(){
         
         <div className="dalert">
           <p>Open our website in any browser to avoid the problem of not entering the link.</p>
-          <p>লিংকে ঢুকতে না পারা প্রবলেম এড়াতে ওয়েবসাইট টি যেকোনো ওয়েবসাইট খুলুন।</p>
+          <p>লিংকে ঢুকতে না পারা প্রবলেম এড়াতে ওয়েবসাইট টি যেকোনো ব্রাউজার অ্যাপে খুলুন।</p>
         </div>
       </div>
     </>
