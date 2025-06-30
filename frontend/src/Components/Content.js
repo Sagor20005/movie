@@ -5,18 +5,18 @@ import { useNavigate, useParams, Link } from "react-router-dom"
 import {useEffect,useState} from "react"
 import { Helmet } from 'react-helmet-async';
 
-function Content(){
+function Content({content_type}){
   const api_url = process.env.REACT_APP_API_URL
   const [contentData,setCdata] = useState({})
   const Navigate = useNavigate()
-  const {title} = useParams()
+  const {urlnm} = useParams()
   
-  async function fetchContent(title){
+  async function fetchContent(urlnm){
     try{
-      let response = await fetch(`${api_url}/movie-by-title/${title.toLowerCase()}`)
+      let response = await fetch(`${api_url}/movie-by-title/${urlnm.toLowerCase()}`)
       response = await response.json()
       console.log(response)
-      if(response && response.isOk){
+      if(response && response.isOk && response.data.Type === content_type){
         setCdata(response.data)
       }
     }catch(err){
@@ -31,8 +31,8 @@ function Content(){
       behavior: 'smooth' // Optional, adds smooth scrolling
     });
     // Call to get content
-     fetchContent(title)
-  },[title])
+     fetchContent(urlnm)
+  },[urlnm])
   
   return(
     <>
