@@ -3,6 +3,7 @@ const router = require("express").Router()
 
 // Middleware
 const sanitizeDatels = require("../middleware/sanitizeDatels.js")
+const checkExist = require("../middleware/check_exist.js")
 
 // router imports
 const {
@@ -33,7 +34,7 @@ const {
 router.all("/", (req, resp)=> resp.render("landpage"))
 
 // Add a movie
-router.post("/addMovie", sanitizeDatels, addMovie)
+router.post("/addMovie", sanitizeDatels,checkExist, addMovie)
 
 // Get only auto show movie
 router.get("/show-movies", ShowMovies)
