@@ -5,6 +5,7 @@ const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const imageKit = require("../utilities/imageKitSetup.js")
 const postToPage = require("../utilities/page_post.js")
 const toUtcDate = require("../utilities/toUtcDate.js")
+const addGenre = require("../utilities/addGenre.js")
 const { SitemapStream } = require('sitemap');
 
 const devolopmentState = process.env.STATE
@@ -67,6 +68,9 @@ const addMovie = async (req, resp)=> {
       allData.createdAt = utc
       allData.updatedAt = utc
     }
+    
+    // Add new genre if avleable 
+    if(allData.Genre) addGenre(allData.Genre)
     
     const newMovie = new movieColl(allData)
     const response = await newMovie.save()
