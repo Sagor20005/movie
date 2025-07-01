@@ -2,9 +2,10 @@
 
 function sanitizeDatels(req,resp,next){
   
+  
   try{
     // must bee field list
-    const filedArray = ["Poster","Title","Genre","AutoShow"];
+    const filedArray = ["Poster","Title","AutoShow"];
     // cheak all are avleable
     const emptyFields = []
     filedArray.forEach((fild)=>{
@@ -14,8 +15,8 @@ function sanitizeDatels(req,resp,next){
       }
     })
     // Cheake Download field
-    if(JSON.parse(req.body.Downloads).length === 0) emptyFields.push("Downloads")
-    if(JSON.parse(req.body.Images).length === 0) emptyFields.push("Images")
+    if( req.body.Downloads.length < 1 ) emptyFields.push("Downloads")
+    if( req.body.Images.length < 1) emptyFields.push("Images")
     
     
     if(emptyFields.length > 0){

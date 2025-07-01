@@ -4,6 +4,7 @@ const imageRecordColl = require("../database/models/imageRecord.js")
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 const imageKit = require("../utilities/imageKitSetup.js")
 const postToPage = require("../utilities/page_post.js")
+const toUtcDate = require("../utilities/toUtcDate.js")
 const { SitemapStream } = require('sitemap');
 
 const devolopmentState = process.env.STATE
@@ -41,10 +42,10 @@ const addMovie = async (req, resp)=> {
       Rated: req.body.Rated,
       Released: req.body.Released,
       Runtime: req.body.Runtime,
-      Genre: req.body.Genre ? JSON.parse(req.body.Genre) : undefined ,
+      Genre: req.body.Genre && typeof(req.body.Genre) === "string" ? JSON.parse(req.body.Genre) : req.body.Genre ,
       Director: req.body.Director,
       Writer: req.body.Writer,
-      Actors: req.body.Actors,
+      Actors: req.body.Actors ,
       Plot: req.body.Plot,
       Language: req.body.Language,
       Country: req.body.Country,
@@ -52,14 +53,19 @@ const addMovie = async (req, resp)=> {
       imdbVotes: req.body.imdbVotes,
       imdbID: req.body.imdbID,
       Type: req.body.Type?.toLowerCase(),
-      Images: req.body.Images ? JSON.parse(req.body.Images) : undefined,
-      Downloads:  req.body.Downloads ? JSON.parse(req.body.Downloads) : undefined,
+      Images: req.body.Images && typeof(req.body.Images) === "string" ? JSON.parse(req.body.Images) : req.body.Images,
+      Downloads:  req.body.Downloads && typeof(req.body.Downloads) === "string" ? JSON.parse(req.body.Downloads) : req.body.Downloads,
       New: req.body.New  ? true : false,
       Trand: req.body.Trand  ? true : false,
       Poster: req.body.Poster,
       AutoShow: req.body.AutoShow ? true : false,
       Category: req.body.Category?.toLowerCase(),
-      UploadedImageIds: req.body.UploadedImageIds ? JSON.parse(req.body.UploadedImageIds) : undefined
+      UploadedImageIds: req.body.UploadedImageIds && typeof(req.body.UploadedImageIds) === "string" ? JSON.parse(req.body.UploadedImageIds) : undefined
+    }
+    if(req.body.createdAt){
+      const utc = toUtcDate(req.body.createdAt)
+      allData.createdAt = utc
+      allData.updatedAt = utc
     }
     
     const newMovie = new movieColl(allData)
