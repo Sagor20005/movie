@@ -15,8 +15,8 @@ function sanitizeDatels(req,resp,next){
       }
     })
     // Cheake Download field
-    if( req.body.Downloads.length < 1 ) emptyFields.push("Downloads")
-    if( req.body.Images.length < 1) emptyFields.push("Images")
+    if( !req.body.Downloads ) emptyFields.push("Downloads")
+    if( !req.body.Images) emptyFields.push("Images")
     
     
     if(emptyFields.length > 0){
