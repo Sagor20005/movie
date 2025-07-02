@@ -9,6 +9,7 @@ import { hideSearchComponent } from "../features/search/searchSlice"
 import loddingGif from "./Assets/lodding1.gif"
 import errorGif from "./Assets/error.gif"
 import SeparateContentAreay from "../Utilities/separateProductAreay.js"
+import movieIcon from "./Assets/movie.png"
 
 function SearchResult(){
   const dispatch = useDispatch()
@@ -31,7 +32,10 @@ function SearchResult(){
           return(
           <div onClick={()=>Navigate("/content/"+content.url_name)} className="content">
             <div className="image">
-              <img src={content.Poster} alt={content.Title}/>
+              <img src={content.Poster} onError={(e)=> {
+                    e.target.onerror = null;
+                    e.target.src = movieIcon
+                  }} alt={content.Title}/>
             </div>
             <div className="dtl">
               <span>{ content.Title.length > 20 ? content.Title.slice(0,15) + ".." : content.Title }</span>

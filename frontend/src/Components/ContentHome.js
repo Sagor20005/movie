@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import SeparateProductAreay from "../Utilities/separateProductAreay.js"
 import { useSelector, useDispatch } from 'react-redux'
 import { getMovies } from "../features/movies/moviesSlice"
+import movieIcon from "./Assets/movie.png"
 
 
 function ContentHome(){
@@ -21,6 +22,7 @@ function ContentHome(){
     if(contents.length === 0) dispatch(getMovies())
   },[])
   
+  
   // genarate html
   const [contentHtml,setHtml] = useState(null)
   function rendar(index){
@@ -35,7 +37,10 @@ function ContentHome(){
             return(
               <div key={i} onClick={()=>Navigate(`/content/${content.url_name}`,{state:content})} className="content">
                 <div className="image">
-                  <img src={content.Poster} alt={content.Title}/>
+                  <img src={content.Poster} onError={(e)=> {
+                    e.target.onerror = null;
+                    e.target.src = movieIcon
+                  }} alt={content.Title}/>
                 </div>
                 <div className="dtl">
                   <span>{ content.Title.length > 20 ? content.Title.slice(0,15) + ".." : content.Title }</span>
