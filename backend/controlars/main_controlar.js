@@ -11,6 +11,43 @@ const { SitemapStream } = require('sitemap');
 const devolopmentState = process.env.STATE
 
 
+// TESTING SECTION 
+const imdb_url = "https://imdb.iamidiotareyoutoo.com/search?q="
+async function main(){
+  const allMovie = await movieColl.find().sort({ createdAt: -1 })
+  let count = 1
+  
+  for(const movie of allMovie.slice(700,allMovie.length)){
+    console.log("Finding poster..")
+    // Search movie 
+    let imdb_res = await fetch(imdb_url+movie.Title)
+    imdb_res = await imdb_res.json()
+    imdb_res = imdb_res.ok ? imdb_res.description : null
+    
+    // Go on if found
+    if(imdb_res){
+      console.log("Founded now Validateing..")
+      // Validate movie 
+      let original_movie = imdb_res.filter((im)=>{
+        if( im["#TITLE"].toLowerCase().includes(movie.Title) && im["#YEAR"] === Number(movie.Year)  ) return true
+      })
+      
+      // if found 
+      original_movie = original_movie[0]
+      if(original_movie){
+        const poster = original_movie["#IMG_POSTER"]
+        const updated = await movieColl.findOneAndUpdate( {_id: movie._id}, { Poster: poster } )
+        if(updated && updated._id) console.log("Added Poster on (" + movie.Title + ")\n" + "Complited - " + count )
+        count++
+      }else console.log("Not found.")
+      
+    }
+    
+  }
+  
+}
+//main()
+// TESTING SECTION 
 
 // All controlars
 const ShowMovies = async (req,resp)=>{
