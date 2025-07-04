@@ -13,7 +13,7 @@ function ContentHome({ content_list, content_type, page }){
         {
           content_list.slice( page*10-10, page*20 ).map((content,i)=>{
             return(
-              <div key={i} onClick={()=>Navigate(`/content/${content.url_name}`,{state:content})} className="content">
+              <div key={i} onClick={()=>Navigate(`/${content_type}/${content.url_name}`,{state:content})} className="content">
                 <div className="image">
                   <img src={content.Poster} alt={content.Title}/>
                 </div>

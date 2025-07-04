@@ -11,6 +11,8 @@ function Content({content_type}){
   const Navigate = useNavigate()
   const {urlnm} = useParams()
   
+  console.log(urlnm)
+  
   async function fetchContent(urlnm){
     try{
       let response = await fetch(`${api_url}/movie-by-title/${urlnm.toLowerCase()}`)
