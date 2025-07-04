@@ -2,6 +2,7 @@
   padding: 10px;
   min-height: 200px;
   text-transform: capitalize;
+  min-width: 400px;
 }
 .NewUpdate_section h3{
   margin-block: 10px;

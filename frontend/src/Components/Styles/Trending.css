@@ -1,0 +1,39 @@
+.t_containar{
+  padding: 10px;
+}
+.t_containar .t_contents{
+  width: 100%;
+  min-height: 200px;
+  padding: 10px;
+  display: flex;
+  gap: 10px;
+  overflow-y: scroll;
+}
+.t_contents .t_content{
+  width: 150px;
+  border-radius: 13px;
+  padding: 10px;
+  color: var(--text);
+  flex-shrink: 0;
+}
+.t_contents .t_content img{
+  width: 150px;
+  height: 200px;
+  border-radius: 13px;
+}
+.t_contents .lodding{
+  background-color: var(--box_bg);
+  animation-name: loddingEff;
+  animation-direction: 1s;
+  animation-iteration-count: infinite;
+}
+
+
+@keyframes loddingEff {
+  from{
+    background-color: #39cb63;
+  }
+  to{
+    background-color: #16271b;
+  }
+}

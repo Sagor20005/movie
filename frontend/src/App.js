@@ -45,8 +45,18 @@ function App() {
       <Navbar />
       <div className="App_body">
           <Routes>
-            <Route path="/" element={<Home />}/>
-            <Route path="/content/:title" element={<Content />}/>
+            <Route path="/" element={<Home content_type="movie" />}/>
+            <Route path="/movie" element={<Home content_type="movie" />}/>
+            <Route path="/series" element={<Home content_type="series" />}/>
+            
+            <Route path="/movie/page/:pnum" element={<Home content_type="movie" />}/>
+            <Route path="/series/page/:pnum" element={<Home content_type="series" />}/>
+            
+            <Route path="/movie/:urlnm" element={<Content content_type="movie" />}/>
+            <Route path="/series/:urlnm" element={<Content content_type="series" />}/>
+            
+            
+            <Route path="/content/:urlnm" element={<Content />}/>
             <Route path="/download/:id/:linkid" element={<Download />}/>
             <Route path="/dstart/:id/:linkid" element={<DownloadStart />}/>
           </Routes>
