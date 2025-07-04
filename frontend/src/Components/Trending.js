@@ -7,8 +7,9 @@ const Trending = ({ trending_contents, content_type })=>{
   
   const contents_element = useRef(null)
   const Navigate = useNavigate()
+  const count = [{},{},{},{},{}]
   
-  
+  console.log(trending_contents.length)
   
   useEffect(()=>{
     // SCROLL EFFECT FUNCTIONALIRY SECTION
@@ -54,7 +55,11 @@ const Trending = ({ trending_contents, content_type })=>{
         }
         
         {
-          !trending_contents && <div className="t_content lodding"></div>
+          trending_contents.length === 0 && count.map((c)=> {
+            return (
+            <div className="t_content lodding"></div>
+            )
+          } )
         }
         
       </div>
