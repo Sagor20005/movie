@@ -53,6 +53,10 @@ const Trending = ({ trending_contents, content_type })=>{
           })
         }
         
+        {
+          !trending_contents && <div className="t_content lodding"></div>
+        }
+        
       </div>
     </div>
     );
