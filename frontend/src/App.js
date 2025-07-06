@@ -49,7 +49,7 @@ function App() {
             <Route path="/movie" element={<Home content_type="movie" />}/>
             <Route path="/series" element={<Home content_type="series" />}/>
             
-            <Route path="/movie/page/:pnum" element={<Home content_type="movie" />}/>
+            <Route path="/movie/page/:pnum" element={<Home content_type="movie" expand="true" />}/>
             <Route path="/series/page/:pnum" element={<Home content_type="series" />}/>
             
             <Route path="/movie/:urlnm" element={<Content content_type="movie" />}/>

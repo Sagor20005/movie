@@ -4,6 +4,7 @@
   background-color: var(--bg);
   padding-bottom: 20px;
   text-transform: capitalize;
+  position: relative;
 }
 @scope(.content_containar){
   .section_title{
@@ -11,6 +12,16 @@
     font-size: 18px;
     color: var(--title);
     display: block;
+  }
+  .seemore{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    padding: 2px 4px;
+    background-color: red;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
   }
   .content_list{
     min-width: 100%;
@@ -77,6 +88,22 @@
   color: black;
 }
 
+.pageination{
+  display: flex;
+  justify-content: space-around;
+  margin-block: 20px;
+  max-width: 400px;
+}
+.pageination div{
+  padding: 10px 20px;
+  background-color: var(--box_bg);
+  text-decoration: none;
+  color: var(--text);
+  border-radius: 5px;
+}
+.pageination div:hover{
+  background-color: #3a794c;
+}
 
 
 

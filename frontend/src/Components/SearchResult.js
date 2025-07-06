@@ -30,7 +30,7 @@ function SearchResult(){
       {
         separatedContent[pageIndex].map((content)=>{
           return(
-          <div onClick={()=>Navigate("/content/"+content.url_name)} className="content">
+          <div onClick={()=>Navigate("/movie/"+content.url_name)} className="content">
             <div className="image">
               <img src={content.Poster} onError={(e)=> {
                     e.target.onerror = null;

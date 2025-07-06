@@ -1,7 +1,7 @@
 .navbar{
   color: var(--text);
   background-color: var(--bg);
-  width: 100vw;
+  min-width: 100vw;
   min-height: 60px;
   display: flex;
   flex-direction: column;

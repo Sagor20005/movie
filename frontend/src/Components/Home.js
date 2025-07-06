@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom"
 import LoddingEffect from "./Assets/lodding1.gif"
 
 
-function Home({content_type}){
+function Home({content_type,expand}){
   const dispatch = useDispatch()
   const { pnum } = useParams()
   
@@ -54,7 +54,7 @@ function Home({content_type}){
         <div>
           <Tranding />
           <Trending trending_contents={trending_contents} content_type={content_type} />
-          { searchComponent ? <SearchResult /> : <ContentHome content_list={content_list} content_type={content_type} page={pnum} /> }
+          { searchComponent ? <SearchResult /> : <ContentHome content_list={content_list} content_type={content_type} page={pnum} expand={expand} /> }
         </div>
         <NewUpdate />
         <Category />
