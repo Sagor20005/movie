@@ -29,6 +29,12 @@ const {
   GetSiteMap
 } = require("../controlars/main_controlar")
 
+const {
+  getUpdated,
+  getTrending,
+  getForyou
+} = require("../controlars/content_get&post.js")
+
 
 // routers
 router.all("/", (req, resp)=> resp.render("landpage"))
@@ -92,6 +98,13 @@ router.get("/movie-by-title/:title",getContentByTitle)
 
 // Get sitemap.xml 
 router.get('/sitemap.xml', GetSiteMap);
+
+// GET FORYOU
+router.get("/foru",getForyou)
+// GET UPDATED
+router.get("/updted",getUpdated)
+// GET TRENDING
+router.get("/trndng",getTrending)
 
 
 // export

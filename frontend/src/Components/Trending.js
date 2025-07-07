@@ -1,6 +1,6 @@
 import "./Styles/Trending.css"
 import { useRef, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 
 const Trending = ({ trending_contents, content_type })=>{
   if (!trending_contents) trending_contents = [{},{}]
@@ -37,6 +37,7 @@ const Trending = ({ trending_contents, content_type })=>{
   return(
     <div className="t_containar">
       <h3>Trending {content_type}</h3>
+      <Link className="seemore" to={ `/${content_type}/page/1` }>See More</Link>
       <div ref={contents_element} className="t_contents">
         
         {

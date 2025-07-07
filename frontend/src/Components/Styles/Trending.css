@@ -1,5 +1,16 @@
 .t_containar{
   padding: 10px;
+  position: relative;
+}
+.t_containar .seemore{
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  padding: 2px;
+  border-radius: 3px;
+  background-color: red;
+  color: white;
+  text-decoration: none;
 }
 .t_containar .t_contents{
   width: 100%;
