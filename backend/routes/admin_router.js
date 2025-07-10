@@ -16,7 +16,8 @@ const {
   GetUpdatePage,
   get_delete_page,
   GetLoginPage,
-  Login
+  Login,
+  get_content_manegment_page
 } = require("../controlars/admin_controlar.js")
 
 // geg home page
@@ -52,6 +53,9 @@ adminRouter.get("/login",GetLoginPage)
 
 // Login 
 adminRouter.post("/login",Login)
+
+// get get_content_manegment_page
+adminRouter.get("/content-manegment",get_content_manegment_page)
 
 
 // Exports

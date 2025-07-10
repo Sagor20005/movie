@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>document</title>
+    <%- include("component/head",{scriptFile }) %>
+  </head>
+  <body>
+    <!-- _____________HEADER SECTION -->
+    <%- include("header",{scriptFile}) %>
+    
+    <main id="cmmc">
+      
+      
+      <div class="popop_containar">
+        <i class="fas fa-window-close popup_close_btn"></i>
+        <h4 id="popup_title" ></h4>
+        <div class="statas">
+          <p>Foryou</p>
+          <input name="AutoShow" id="foryou_radio" type="checkbox">
+        </div>
+        <div class="statas">
+          <p>Trending</p>
+          <input name="Trand" id="trending_radio" type="checkbox">
+        </div>
+        <div class="statas">
+          <p>Updated</p>
+          <input name="New" id="new_radio" type="checkbox">
+        </div>
+      </div>
+      
+      
+      
+      <div class="filter_section">
+        <h4>Filter</h4>
+        <select id="type_select">
+          <option value="movie">movie</option>
+          <option value="series">series</option>
+        </select>
+        <select id="statas_select">
+          <option value="Trand">Trending</option>
+          <option value="AutoShow">Foryou</option>
+          <option value="New">Updated</option>
+          <option value="_id">All</option>
+        </select>
+        <span id="found_ref" >Found: 0/0</span>
+        <button onclick="filterContent()" id="filter_btn">Search</button>
+      </div>
+      
+      
+      <div class="cmclc">
+        <h4>Result</h4>
+        <div class="cmcl"></div>
+        <div class="pageination">
+          <button onclick="page_controlar('back')" >Back</button>
+          <span id="curpage" >0/0</span>
+          <button onclick="page_controlar('next')" >Next</button>
+        </div>
+      </div>
+      
+      
+    </main>
+    
+  </body>
+</html>

@@ -73,7 +73,7 @@ foryouShowBox.addEventListener("click",async (e)=>{
 async function getAutoShowData(){ // function for get all newest data
   try{
     createLoaderAlert()
-    let autoShowResponse = await fetch(`${server_url}/show-movies`)
+    let autoShowResponse = await fetch(`${server_url}/all`)
     autoShowResponse = await autoShowResponse.json()
     loaderAlertClose()
     console.log(autoShowResponse)

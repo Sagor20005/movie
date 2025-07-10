@@ -8,6 +8,9 @@
   align-items: center;
   padding-inline: 20px;
   text-transform: capitalize;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 @scope(#header){
   span{

@@ -12,41 +12,7 @@ const devolopmentState = process.env.STATE
 
 
 // TESTING SECTION 
-const i_url = "https://imdb.iamidiotareyoutoo.com/search?q="
-async function main(){
-  const allMovie = await movieColl.find().sort({ createdAt: -1 })
-  
-  for (const movie of allMovie.slice(0,7)){
-    let imdb_res = await fetch(i_url+movie.Title)
-    imdb_res = await imdb_res.json()
-    
-    const movies = imdb_res.ok ? imdb_res.description : []
-    console.log(movies)
-    
-    const original = movies.filter((m)=>{
-      if(
-        m["#YEAR"] === Number(movie.Year)
-        ){
-          return true
-        }
-    })
-    
-    console.log(original)
-    
-    if(original[0]){
-      const p_url = original[0]["#IMG_POSTER"]
-      const u = await movieColl.findOneAndUpdate(
-        {_id: movie._id},
-        {Poster: p_url}
-        )
-      console.log(u.Title)
-    }
-    
-    
-  }
-  
-}
-//main()
+
 // TESTING SECTION 
 
 
@@ -327,7 +293,7 @@ const GetTranding = async (req,resp)=>{
   }
 }
 
-// Trand updateor 
+// Any fild updateor 
 const fildUpdateor = async (req,resp)=>{
   try{
     const { _id,Fild,Value } = req.body

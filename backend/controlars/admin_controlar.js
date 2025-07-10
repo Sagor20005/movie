@@ -147,6 +147,12 @@ const Login = async (req,resp)=>{
   }
 }
 
+
+// GET content_manegment page 
+const get_content_manegment_page = (req,resp)=>{
+  resp.render("content_manegment",{scriptFile:"content_manegment"})
+}
+
 // Exports 
 module.exports = ({
   TarnOn,
@@ -162,5 +168,6 @@ module.exports = ({
   GetUpdatePage,
   get_delete_page,
   GetLoginPage,
-  Login
+  Login,
+  get_content_manegment_page
 })
