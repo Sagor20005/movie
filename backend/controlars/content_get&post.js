@@ -5,7 +5,7 @@ const movieColl = require("../database/models/movies_model")
 // GET FORYOU CONTROLAR SECTION
 const getForyou = async (req,resp)=>{
   try{
-    const data = await movieColl.find({AutoShow:true})
+    const data = await movieColl.find({AutoShow:true}).sort({ createdAt: -1 })
     resp.status(200).json({
       isOk:true,
       data
@@ -22,7 +22,7 @@ const getForyou = async (req,resp)=>{
 // GET TRENDING CONTROLAR SECTION
 const getTrending = async (req,resp)=>{
    try{
-    const data = await movieColl.find({Trand:true})
+    const data = await movieColl.find({Trand:true}).sort({ createdAt: -1 })
     resp.status(200).json({
       isOk:true,
       data
@@ -39,7 +39,7 @@ const getTrending = async (req,resp)=>{
 // GET UPDATED CONTROLAR SECTION
 const getUpdated = async (req,resp)=>{
    try{
-    const data = await movieColl.find({New:true})
+    const data = await movieColl.find({New:true}).sort({ createdAt: -1 })
     resp.status(200).json({
       isOk:true,
       data
@@ -56,7 +56,7 @@ const getUpdated = async (req,resp)=>{
 // GET ALL CONTENT CONTROLAT
 const getAllContent = async (req,resp)=>{
    try{
-    const data = await movieColl.find()
+    const data = await movieColl.find().sort({ createdAt: -1 })
     resp.status(200).json({
       isOk:true,
       data
