@@ -11,9 +11,13 @@
     <main id="cmmc">
       
       
+      <!-- ____________POPOP SECTION  -->
+      
       <div class="popop_containar">
         <i class="fas fa-window-close popup_close_btn"></i>
-        <h4 id="popup_title" ></h4>
+        <h3 id="popup_title" ></h3>
+        <h4>Status:</h4>
+        <!-- Statas showing Section -->
         <div class="statas">
           <p>Foryou</p>
           <input name="AutoShow" id="foryou_radio" type="checkbox">
@@ -26,7 +30,19 @@
           <p>Updated</p>
           <input name="New" id="new_radio" type="checkbox">
         </div>
+        <!--  Statas showing Section  -->
+        
+        <!-- Othar Functionality Section -->
+        <div id="popop_oprations">
+          <h4>Oparations:</h4>
+          <button>Delete</button>
+          <button>Update</button>
+          <button>Coppy_Post</button>
+        </div>
+        <!-- Othar Functionality Section -->
       </div>
+      
+      <!-- ____________OPOP SECTION  -->
       
       
       
@@ -40,7 +56,11 @@
           <option value="Trand">Trending</option>
           <option value="AutoShow">Foryou</option>
           <option value="New">Updated</option>
-          <option value="_id">All</option>
+          <option value="all">All</option>
+        </select>
+        <select id="select_istrue" >
+          <option value="true">Yes</option>
+          <option value="">No</option>
         </select>
         <span id="found_ref" >Found: 0/0</span>
         <button onclick="filterContent()" id="filter_btn">Search</button>

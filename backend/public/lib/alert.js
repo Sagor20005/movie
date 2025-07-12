@@ -58,6 +58,7 @@ const css = `
   flex-direction: column-reverse;
   gap: 10px;
   transition:all 1s;
+  z-index: 10000000;
 }
 
 .alert_containar {
@@ -118,6 +119,7 @@ const css = `
       font-family: "Rubik";
       animation-name: open_confrom;
       animation-duration: .5s;
+      z-index: 1000000;
     }
     .confrom_btns{
       display: flex;
@@ -155,6 +157,7 @@ const css = `
       left: 0;
       display: grid;
       place-items: center;
+      z-index: 100000;
     }
     .alert_loder{
       display: flex;

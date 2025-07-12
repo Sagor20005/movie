@@ -19,6 +19,7 @@ const curpage = document.querySelector("#curpage")
 const type_select = document.querySelector("#type_select")
 const statas_select = document.querySelector("#statas_select")
 const found_ref = document.querySelector("#found_ref")
+const isTrueOrNot = document.querySelector("#select_istrue")
 
 // IMPORTANT VARUABLE
 let AllContent = []
@@ -141,6 +142,9 @@ popop_containar.addEventListener("click", async (e)=> {
 
 })
 
+// Delete functionality 
+
+
 // ____________POPUP EXTENDAR FUNCTIONALITY
 
 // ____________PAGEINATION FYNCTIONALITY
@@ -168,17 +172,27 @@ window.filterContent = function() {
 
   const type = type_select.value
   const statas = statas_select.value
+  const isTrueOrFalse = isTrueOrNot.value ? true : false
   createLoaderAlert()
-
   if (!type || !statas) return false
   currentPage = 1 // reset currrent page
-
-  const newList = AllContent.filter((movie)=> {
+  
+  let newList = []
+  
+  if(statas === "all"){
+    newList = AllContent.filter((movie)=> {
+    if (movie.Type === type) return true
+    })
+  }else{
+    newList = AllContent.filter((movie)=> {
     if (
-      movie.Type === type &&
-      movie[statas]
-    ) return true
-  })
+        movie.Type === type &&
+        movie[statas] === isTrueOrFalse
+      ) return true
+    })
+  }
+
+  
 
   loaderAlertClose()
   subContent = newList

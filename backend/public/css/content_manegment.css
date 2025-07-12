@@ -26,6 +26,21 @@
   top: 10px;
   right: 10px;
 }
+.popop_containar #popop_oprations{
+  margin-block: 20px;
+}
+#popop_oprations button{
+  padding: 3px 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  margin: 5px;
+}
+#popop_oprations button:hover{
+  background-color: #d3c8de;
+  color: black;
+}
 
 #cmmc .filter_section{
   padding: 10px;
@@ -41,6 +56,8 @@
   margin-inline: 5px;
   border: none;
   transition: 1s;
+  display: inline-block;
+  margin-block: 10px;
 }
 button:hover{
   background-color: #d3c8de;
