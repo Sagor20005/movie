@@ -20,6 +20,8 @@ const type_select = document.querySelector("#type_select")
 const statas_select = document.querySelector("#statas_select")
 const found_ref = document.querySelector("#found_ref")
 const isTrueOrNot = document.querySelector("#select_istrue")
+const delete_item_btn = document.querySelector("#delete_item_btn")
+const update_item_btn = document.querySelector("#update_item_btn")
 
 // IMPORTANT VARUABLE
 let AllContent = []
@@ -142,8 +144,17 @@ popop_containar.addEventListener("click", async (e)=> {
 
 })
 
-// Delete functionality 
+// Gi to Delete functionality page
+delete_item_btn.addEventListener("click",(e)=>{
+  const _id = e.target.parentElement.parentElement.getAttribute("_id");
+  window.open(`/admin/delete-con/${_id}`)
+})
 
+//  Go to Update functionality page
+update_item_btn.addEventListener("click",(e)=>{
+  const _id = e.target.parentElement.parentElement.getAttribute("_id");
+  window.open(`/admin/update-con/${_id}`)
+})
 
 // ____________POPUP EXTENDAR FUNCTIONALITY
 
