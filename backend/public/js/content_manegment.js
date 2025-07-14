@@ -146,8 +146,14 @@ popop_containar.addEventListener("click", async (e)=> {
 
 // Gi to Delete functionality page
 delete_item_btn.addEventListener("click",(e)=>{
-  const _id = e.target.parentElement.parentElement.getAttribute("_id");
-  window.open(`/admin/delete-con/${_id}`)
+  isConfromAlert({
+    title:"You sure?",
+    text:"What you want to delete!"
+  },(ok)=>{
+    if (!ok) return false
+    const _id = e.target.parentElement.parentElement.getAttribute("_id");
+    window.open(`/admin/delete-con/${_id}`)
+  })
 })
 
 //  Go to Update functionality page
