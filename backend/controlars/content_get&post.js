@@ -70,9 +70,28 @@ const getAllContent = async (req,resp)=>{
 }
 // GET ALL CONTENT CONTROLAT
 
+// GET CONTENT BY ID
+async function getConById(req,resp){
+  try{
+    const _id = req.params.id;
+    const movie = await movieColl.findOne({_id});
+    resp.status(200).json({
+      isOk:true,
+      movie
+    })
+  }catch(err){
+    resp.status(200).json({
+      isOk:false,
+      msg: err.message
+    })
+  }
+}
+// GET CONTENT BY ID
+
 module.exports = {
   getUpdated,
   getTrending,
   getForyou,
-  getAllContent
+  getAllContent,
+  getConById
 }

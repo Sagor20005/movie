@@ -22,6 +22,7 @@ const found_ref = document.querySelector("#found_ref")
 const isTrueOrNot = document.querySelector("#select_istrue")
 const delete_item_btn = document.querySelector("#delete_item_btn")
 const update_item_btn = document.querySelector("#update_item_btn")
+const copy_post_btn = document.querySelector("#copy_curr_post_btn")
 
 // IMPORTANT VARUABLE
 let AllContent = []
@@ -161,6 +162,63 @@ update_item_btn.addEventListener("click",(e)=>{
   const _id = e.target.parentElement.parentElement.getAttribute("_id");
   window.open(`/admin/update-con/${_id}`)
 })
+
+// Copy post functionality
+copy_post_btn.addEventListener("click",async (e)=>{
+  const _id = e.target.parentElement.parentElement.getAttribute("_id");
+  try{
+    let response = await fetch(`/getbyid/${_id}`);
+    response = await response.json()
+    if(response && response.isOk){
+      GenaretePost(response.movie)
+    }
+  }catch(err){
+    console.log(err)
+  }
+})
+
+function GenaretePost(data){
+  if( !data || !data.Title ) return false
+  
+  const caption = `
+🎬 ${data.Title.slice(0,1).toUpperCase() + data.Title.slice(1)} 🔥
+${"📦 Genre : " + data.Genre}\n
+⚡সাইটে আপলোড করা হয়েছে💥
+⚡সবার আগে দেখুন 🌟
+
+✅ Quality : High Rasulation 🔔
+${"📂 Options : " +data.Downloads.map((d)=>d.quality)}\n
+📥 Visit And Download Now
+
+____________________
+Movie Link 👉 https://newflex.vercel.app/${data.Type}/${data.url_name}
+____________________
+
+✅ সবার আগে সকল নতুন মুভি দেখতে আমাদের সাথে যুক্ত হন 🤝
+🌐 https://newflex.vercel.app
+
+${"🏷️ Year : " + data.Year}
+${"📑 Plot: "+data.Plot}
+${"🎭 Actors: "+data.Actors}
+
+
+  `
+  
+  navigator.clipboard.writeText(caption)
+  
+  // download all images 
+  data?.Images?.forEach(async (image,i)=>{
+    const f = await fetch(image)
+    const blob = await f.blob()
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download= data.Title+ " (" + i + ").png"
+    a.click()
+  })
+  
+  
+}
 
 // ____________POPUP EXTENDAR FUNCTIONALITY
 

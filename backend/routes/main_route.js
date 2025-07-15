@@ -17,7 +17,6 @@ const {
   GetTranding,
   fildUpdateor,
   getNewest,
-  GetById,
   GetLinkById,
   GetUnwantedImage,
   DeleteUnwantedImage,
@@ -33,7 +32,8 @@ const {
   getUpdated,
   getTrending,
   getForyou,
-  getAllContent
+  getAllContent,
+  getConById
 } = require("../controlars/content_get&post.js")
 
 
@@ -71,7 +71,7 @@ router.put("/fildupdate", fildUpdateor)
 router.get("/newest", getNewest)
 
 // Get by id
-router.get("/getbyid/:id", GetById)
+router.get("/getbyid/:id", getConById)
 
 // Get link by id 
 router.get("/getlinkbyid/:id/:linkid", GetLinkById)

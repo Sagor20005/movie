@@ -168,6 +168,7 @@ searchBar.addEventListener("submit",async (e)=>{
 
 window.create_post_data = function(data){
   if( !data || !data.Title ) return false
+  createLoaderAlert()
   
   const caption = `
   🎬 ${data.Title.slice(0,1).toUpperCase() + data.Title.slice(1)} 🔥
@@ -199,7 +200,7 @@ ____________________
     a.click()
   })
   
-  
+  loaderAlertClose()
 }
 
 // ___________CREATE PROJECT FUNCTIONALITY END
