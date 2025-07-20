@@ -44,6 +44,11 @@ function Content({content_type}){
           <title>{contentData?.Title}</title>
           <meta name="description" content={ `${contentData?.Title} ${ contentData?.Type || "" } download free. without login & signup. first download no ads!` } />
           <meta name="keywords" content={`${contentData?.Title} ${ contentData?.Type || "" } download, bangla movie download, hindi movie download`} />
+          <meta property="og:title" content={`${contentData?.Title} | NewFlex`}}>
+          <meta property="og:description" content={`Download or watch ${contentData?.Title} full movie from MovieZone.`}>
+          <meta property="og:image" content={`https://newflex.vercel.app/movie/${contentData?.Title}`}>
+          <meta property="og:url" content={`https://newflex.vercel.app/movie/${contentData?.Title}`}>
+          <meta property="og:type" content="website">
         </Helmet>
         <div className="s_content_containar">
         
