@@ -48,7 +48,7 @@ function NewUpdate({Genre,content_type}){
    const Html = data.map((con,i)=>{
       if(con.New){
         return(
-        <div key={i} onClick={()=>Navigate(`/${content_type}/${con.Title}`)} className="list_con">
+        <div key={i} onClick={()=>Navigate(`/${content_type}/${con.url_name}`)} className="list_con">
             <img src={con.Poster} alt={con.Title}/>
             <div>
               <p>{con.Title}</p>
