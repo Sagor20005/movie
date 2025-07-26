@@ -1,14 +1,13 @@
 import "./Styles/Content.css"
 import Navbar from "./Navbar"
 import NewUpdate from "./NewUpdate"
-import { useNavigate, useParams, Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import {useEffect,useState} from "react"
 import { Helmet } from 'react-helmet-async';
 
 function Content({content_type}){
   const api_url = process.env.REACT_APP_API_URL
   const [contentData,setCdata] = useState({})
-  const Navigate = useNavigate()
   const {urlnm} = useParams()
   
   

@@ -4,7 +4,6 @@ const movieColl = require("../database/models/movies_model")
 
 // GET FORYOU CONTROLAR SECTION
 const getForyou = async (req,resp)=>{
-  console.log("kkkkk")
   try{
     const data = await movieColl.find({AutoShow:true}).sort({ createdAt: -1 })
     resp.status(200).json({
@@ -22,7 +21,6 @@ const getForyou = async (req,resp)=>{
 
 // GET TRENDING CONTROLAR SECTION
 const getTrending = async (req,resp)=>{
-  console.log("jjjjjj")
    try{
     const data = await movieColl.find({Trand:true}).sort({ createdAt: -1 })
     resp.status(200).json({

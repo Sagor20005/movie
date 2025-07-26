@@ -16,7 +16,6 @@ function Navbar(){
   
   // subscribe redux store 
   const { showCategoryComponent, showSearchInput, settings } = useSelector((state)=>state.setting)
-  const { data } = useSelector((state)=> state.aditionalData )
   
   const dispatch = useDispatch()
   

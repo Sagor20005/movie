@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getContents } from "../features/allContent/allContentSlice.js"
 // import useGetAutoShow from "../CastomHooks/useGetAutoShow"
 
-function NewUpdate({Genre}){
+function NewUpdate({Genre,content_type}){
   const dispatch = useDispatch();
   const Navigate = useNavigate()
   const { contents: all_contents } = useSelector((state)=> state.all_content)
@@ -40,7 +40,6 @@ function NewUpdate({Genre}){
   
   
   
-  const { contents: TrendingContents } = useSelector((state)=> state.trending)
   // What to rendar 
   let [Html_content,setHtml] = useState(null)
   

@@ -1,9 +1,8 @@
 import "./Styles/Download.css"
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 function Download(){
   const params = useParams()
-  const Navigate = useNavigate()
   
   const [ count, setCount ] = useState(0)
   

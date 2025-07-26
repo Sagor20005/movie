@@ -1,7 +1,4 @@
 import "./Styles/ContentHome.css"
-import LoddingEffect from "./Assets/lodding1.gif"
-import errorEffect from "./Assets/error.gif"
-import {useEffect, useState} from "react"
 import { useNavigate, Link } from "react-router-dom"
 
 function ContentHome({ content_list, content_type, page, expand }){

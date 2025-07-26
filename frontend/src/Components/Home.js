@@ -3,17 +3,14 @@ import ContentHome from "./ContentHome"
 import SearchResult from "./SearchResult"
 import Tranding from "./Tranding"
 import Trending from "./Trending"
-import NewUpdate from "./NewUpdate"
-import Category from "./ExtraComponent/Category"
 import { useSelector, useDispatch } from "react-redux"
 import { Helmet } from 'react-helmet-async';
 import { GetSettings } from "../features/settings/settingSlice"
 import { getTrending } from "../features/Trending/TrendingSlice"
 import { getForyou } from "../features/foryou/foryou.js"
 import { getContents } from "../features/allContent/allContentSlice.js"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import LoddingEffect from "./Assets/lodding1.gif"
 import useScrollToTop from "./CastomHooks/useScrollToTop.js"
 
 

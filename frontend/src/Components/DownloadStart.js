@@ -1,10 +1,9 @@
-import {useParams, useNavigate} from "react-router-dom"
+import {useParams} from "react-router-dom"
 import { useEffect, useState } from "react"
 import "./Styles/DownloadStart.css"
 import instructionImage from "./Assets/instruction.jpg"
 function DownloadStart(){
   const params = useParams()
-  const Navigate = useNavigate()
   
   const server = `${process.env.REACT_APP_API_URL}/getlinkbyid`
   
