@@ -1,16 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit'
-import moviesSlice from "../features/movies/moviesSlice.js"
+import foryouSlice from "../features/foryou/foryou.js"
 import searchSlice from "../features/search/searchSlice.js"
 import settingSlice from "../features/settings/settingSlice.js"
 import aditionalDataSlice from "../features/aditionalData/aditionalDataSlice.js"
 import trendingSlice from "../features/Trending/TrendingSlice.js"
+import allContentSlice from "../features/allContent/allContentSlice.js"
 
 export default configureStore({
   reducer: {
-    moviesList: moviesSlice,
+    foryou: foryouSlice,
     search: searchSlice,
     setting: settingSlice,
     aditionalData: aditionalDataSlice,
-    trending: trendingSlice
+    trending: trendingSlice,
+    all_content: allContentSlice
   },
 })

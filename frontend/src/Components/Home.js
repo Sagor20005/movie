@@ -9,9 +9,12 @@ import { useSelector, useDispatch } from "react-redux"
 import { Helmet } from 'react-helmet-async';
 import { GetSettings } from "../features/settings/settingSlice"
 import { getTrending } from "../features/Trending/TrendingSlice"
+import { getForyou } from "../features/foryou/foryou.js"
+import { getContents } from "../features/allContent/allContentSlice.js"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import LoddingEffect from "./Assets/lodding1.gif"
+import useScrollToTop from "./CastomHooks/useScrollToTop.js"
 
 
 function Home({content_type,expand}){
@@ -21,27 +24,26 @@ function Home({content_type,expand}){
   const { searchComponent } = useSelector((state)=> state.search)
   const { settings } = useSelector((state)=> state.setting)
   const { contents: TrendingContents } = useSelector((state)=> state.trending)
-  const { contents } = useSelector((state)=> state.moviesList)
+  const { contents: foryou_contents } = useSelector((state)=> state.foryou)
+  const { contents: all_content } = useSelector((state)=> state.all_content)
   
-  // Movies or sries what to render
-  let content_list = []
-  if(content_type){
-    content_list = contents.filter((content)=> content.Type === content_type )
-  }else{
-    content_list = contents.filter((content)=> content.Type === "movie" )
-  }
-  // Movies or sries what to render
+  // Foryou Movies or sries what to render
+  const moviesList = expand ? all_content.filter((content)=> content.Type === "movie" ) : foryou_contents.filter((content)=> content.Type === "movie" )
+  const seriesList = expand ? all_content.filter((content)=> content.Type === "series" ) : foryou_contents.filter((content)=> content.Type === "series" )
+  //Foryou  Movies or sries what to render
   
   // Extract Trending Contents
   const trending_movies = TrendingContents.filter((content)=> content.Type === "movie" )
   const trending_series = TrendingContents.filter((content)=> content.Type === "series" )
-  console.log({trending_movies,trending_series})
   // Extract Trending Contents
   
   
+  useScrollToTop()
   useEffect(()=>{
     if(!settings) dispatch(GetSettings())
-    dispatch(getTrending())
+    if(TrendingContents.length === 0) dispatch(getTrending())
+    if(foryou_contents.length === 0) dispatch(getForyou())
+    if(all_content.length === 0) dispatch(getContents())
   },[])
   
   
@@ -54,14 +56,19 @@ function Home({content_type,expand}){
           <meta name="keywords" content="newflex,bangla movie download, movie download, bollywood movie download, hollywood movie download, HD movies, south indian movies, free movies"/>
         </Helmet>
         
-        <div>
+        <div className="side" style={{
+          gridArea:"l"
+        }}>
           <Tranding />
           <Trending trending_contents={content_type === "movie" ? trending_movies : trending_series } content_type={content_type} />
-          { searchComponent ? <SearchResult /> : <ContentHome content_list={content_list} content_type={content_type} page={pnum} expand={expand} /> }
+          { searchComponent ? <SearchResult /> : <ContentHome content_list={ content_type === "movie" ? moviesList : seriesList } content_type={content_type} page={pnum} expand={expand} /> }
         </div>
-        <Trending trending_contents={content_type === "movie" ? trending_series : trending_movies } content_type={content_type === "movie" ? "series" : "movie"} />
-        <NewUpdate />
-        <Category />
+        <div className="side" style={{
+          gridArea:"r"
+        }}>
+          <Trending trending_contents={content_type === "movie" ? trending_series : trending_movies } content_type={content_type === "movie" ? "series" : "movie"} />
+          <ContentHome content_list={content_type === "movie" ? seriesList : moviesList } content_type={content_type === "movie" ? "series" : "movie"} />
+        </div>
       </div>
       
     </>

@@ -1,5 +1,4 @@
 .content_containar{
-  max-width: 100%;
   color: var(--text);
   background-color: var(--bg);
   padding-bottom: 20px;
@@ -24,7 +23,6 @@
     border-radius: 3px;
   }
   .content_list{
-    min-width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill,calc(30% - 5px));
     gap: 10px;

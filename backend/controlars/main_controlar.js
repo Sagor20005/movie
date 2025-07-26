@@ -69,6 +69,8 @@ const addMovie = async (req, resp)=> {
       Category: req.body.Category?.toLowerCase(),
       UploadedImageIds: req.body.UploadedImageIds && typeof(req.body.UploadedImageIds) === "string" ? JSON.parse(req.body.UploadedImageIds) : undefined
     }
+    
+    // IF HAVR UPLOAD DATE CONVERT INTO ISO DATE
     if(req.body.createdAt){
       const utc = toUtcDate(req.body.createdAt)
       allData.createdAt = utc
@@ -85,9 +87,8 @@ const addMovie = async (req, resp)=> {
         // TODO Temporary tarn off the fb page post because fb varification faild
         //postToPage(response.Title,response.Images,response.url_name)
         
-        // wait for delete able image  change into false 
+        // Change waitfordelete state into false 
         response.UploadedImageIds.forEach(async(id)=>{
-          // proti id te jeye waitfordelete false korte hobe
           const makeFalse = await imageRecordColl.findOneAndUpdate({_id:id},{ waitForDelete:false, postId: response._id })
         })
         
@@ -481,6 +482,12 @@ const UpdateContent = async (req,resp)=>{
   const _id = Upcontent._id
   try{
     const updateRes = await movieColl.findOneAndUpdate({_id},Upcontent)
+    
+    // Change waitfordelete state into false 
+    Upcontent.UploadedImageIds.forEach(async(id)=>{
+      const makeFalse = await imageRecordColl.findOneAndUpdate({_id:id},{ waitForDelete:false, postId: _id })
+    })
+    
     resp.status(200).json({
       isOk:true,
     })

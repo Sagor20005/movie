@@ -28,8 +28,12 @@ const copy_post_btn = document.querySelector("#copy_curr_post_btn")
 let AllContent = []
 let subContent = []
 let currentPage = 1
+let currentType = "movie"
+let filterStatus = "all"
+let filterApply = true
 const max_show = 5
 let all_page_count = 1
+
 
 // Get Content from database
 async function Get_all_content() {
@@ -130,6 +134,9 @@ popop_containar.addEventListener("click", async (e)=> {
         icon: "success",
         text: "Success Oparetion!"
       })
+      // Call apply changeUpdate
+      changeUpdate( data._id, data.Fild, data.Value, currentPage, currentType, filterStatus, filterApply );
+      
     } else {
       createAlert( {
         icon: "error",
@@ -163,6 +170,16 @@ update_item_btn.addEventListener("click",(e)=>{
   window.open(`/admin/update-con/${_id}`)
 })
 
+
+// Update local varuable when any action parform
+function changeUpdate(_id,fild,value,currPage,currType,currState,currApply){
+  const index = AllContent.findIndex((c)=> c._id === _id ); // Find iindex
+  AllContent[index][fild] = value; // Apply
+  findFilter(currType,currState,currApply,currPage);
+}
+
+
+
 // Copy post functionality
 copy_post_btn.addEventListener("click",async (e)=>{
   const _id = e.target.parentElement.parentElement.getAttribute("_id");
@@ -180,28 +197,29 @@ copy_post_btn.addEventListener("click",async (e)=>{
 function GenaretePost(data){
   if( !data || !data.Title ) return false
   
-  const caption = `
-🎬 ${data.Title.slice(0,1).toUpperCase() + data.Title.slice(1)} 🔥
-${"📦 Genre : " + data.Genre}\n
+  const caption = `🎬 ${data.Title.slice(0,1).toUpperCase() + data.Title.slice(1)} 🔥
+Link 👉 https://newflex.vercel.app/${data.Type}/${data.url_name}
+
 ⚡সাইটে আপলোড করা হয়েছে💥
 ⚡সবার আগে দেখুন 🌟
-
 ✅ Quality : High Rasulation 🔔
-${"📂 Options : " +data.Downloads.map((d)=>d.quality)}\n
 📥 Visit And Download Now
 
+${"📦 Genre : " + data.Genre}
+${"📂 Options : " +data.Downloads.map((d)=>d.quality)}\n
+
 ____________________
-Movie Link 👉 https://newflex.vercel.app/${data.Type}/${data.url_name}
+Link 👉 https://newflex.vercel.app/${data.Type}/${data.url_name}
 ____________________
 
 ✅ সবার আগে সকল নতুন মুভি দেখতে আমাদের সাথে যুক্ত হন 🤝
 🌐 https://newflex.vercel.app
 
 ${"🏷️ Year : " + data.Year}
+
 ${"📑 Plot: "+data.Plot}
+
 ${"🎭 Actors: "+data.Actors}
-
-
   `
   
   navigator.clipboard.writeText(caption)
@@ -215,7 +233,22 @@ ${"🎭 Actors: "+data.Actors}
     a.href = url
     a.download= data.Title+ " (" + i + ").png"
     a.click()
+    setTimeout(()=>{URL.revokeObjectURL(url)},5000)
   })
+  // Download poster 
+  if(data?.Poster){
+    async function dp(){
+      const f = await fetch(data.Poster)
+      const blob = await f.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download= data.Title+ " ("-").png"
+      a.click()
+      setTimeout(()=>{URL.revokeObjectURL(url)},5000)
+    }
+    dp()
+  }
   
   
 }
@@ -228,12 +261,12 @@ ${"🎭 Actors: "+data.Actors}
 function set_pageination_count() {
   const devide_val_splited = (`${subContent.length/max_show}`).split(".")
   all_page_count = devide_val_splited.length === 1 ? Number(devide_val_splited[0]): Number(devide_val_splited[0])+1
+  currentPage = all_page_count < currentPage ? --currentPage : currentPage
   curpage.innerText = `${currentPage}/${all_page_count}`
 }
 // Page manager
 window.page_controlar = function(type) {
   currentPage = (type === "next" ? (all_page_count > currentPage ? ++currentPage: currentPage): (currentPage > 1 ? --currentPage: currentPage))
-  console.log(type === "next")
   renderContent(subContent,
     currentPage)
   set_pageination_count()
@@ -243,14 +276,25 @@ window.page_controlar = function(type) {
 
 
 // ____________FILTER CONTENT FUNCTIONALITY
-window.filterContent = function() {
 
+window.filterContent = function(){
   const type = type_select.value
   const statas = statas_select.value
   const isTrueOrFalse = isTrueOrNot.value ? true : false
+  
+  // Set filter info on uppar varuable
+  currentType = type
+  filterStatus = statas
+  filterApply = isTrueOrFalse
+  
+  findFilter(type,statas,isTrueOrFalse); // Search
+}
+
+function findFilter(type,statas,isTrueOrFalse,pageNumber=1) {
   createLoaderAlert()
   if (!type || !statas) return false
-  currentPage = 1 // reset currrent page
+  currentPage = pageNumber // reset currrent page
+  pageNumber = pageNumber !== 1 ? currentPage : pageNumber// If pageNumber set but its bigg morthen currentPage
   
   let newList = []
   
@@ -271,9 +315,8 @@ window.filterContent = function() {
 
   loaderAlertClose()
   subContent = newList
-  renderContent(subContent,
-    1)
   set_pageination_count()
+  renderContent(subContent, pageNumber)
   setFoundTitle()
 }
 // ____________FILTER CONTENT FUNCTIONALITY

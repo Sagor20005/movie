@@ -3,31 +3,53 @@ import React,{ useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import ErrorGif from "./Assets/error.gif"
 import { useSelector, useDispatch } from 'react-redux'
-import { getMovies } from "../features/movies/moviesSlice"
+import { getContents } from "../features/allContent/allContentSlice.js"
 // import useGetAutoShow from "../CastomHooks/useGetAutoShow"
 
-function NewUpdate(){
+function NewUpdate({Genre}){
+  const dispatch = useDispatch();
   const Navigate = useNavigate()
-  const dispatch = useDispatch()
+  const { contents: all_contents } = useSelector((state)=> state.all_content)
   
-  const Contents = useSelector((state)=> state.moviesList)
-  const { contents } = Contents
-  useEffect(()=>{
-    if(contents.length === 0) dispatch(getMovies())
-  },[])
   
-  // get data from redux storr
-  const newContents = useSelector((state)=> state.moviesList.contents)
   
+  function findRelated(genre,data,max,count=1){
+    if(count > genre.length){
+      return data.slice(0,max)
+    }
+    const newData = data.filter((c)=>{
+      let match = 0
+      for(let i = 0; i < genre.length; i++){
+        const currentGenre = genre[i];
+        if(c.Genre.includes(currentGenre)){
+          match++;
+          if(match>= count) break;
+        }
+      }
+      return match >= count
+    })
+    
+   const returnedData = findRelated(genre,newData,max,count+1)
+    if(returnedData.length <= 3){
+      return newData.slice(0,max)
+    }else{
+      return returnedData
+    }
+  }
+  
+  
+  
+  
+  const { contents: TrendingContents } = useSelector((state)=> state.trending)
   // What to rendar 
   let [Html_content,setHtml] = useState(null)
   
-  function render(){
-    if(newContents.length > 0){
-   const Html = newContents.map((con,i)=>{
+  function render(data){
+    if(data.length > 0){
+   const Html = data.map((con,i)=>{
       if(con.New){
         return(
-        <div key={i} onClick={()=>Navigate(`/content/${con.Title}`)} className="list_con">
+        <div key={i} onClick={()=>Navigate(`/${content_type}/${con.Title}`)} className="list_con">
             <img src={con.Poster} alt={con.Title}/>
             <div>
               <p>{con.Title}</p>
@@ -48,8 +70,10 @@ function NewUpdate(){
   }
   
   useEffect(()=>{
-    render()
-  },[newContents])
+    if(all_contents.length === 0) dispatch(getContents())
+    const related = Genre ? findRelated(Genre,all_contents,10,1) : [] ;
+    render(related)
+  },[all_contents,Genre])
   
   
   return(

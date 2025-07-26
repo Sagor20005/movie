@@ -11,13 +11,11 @@ function Content({content_type}){
   const Navigate = useNavigate()
   const {urlnm} = useParams()
   
-  console.log(urlnm)
   
   async function fetchContent(urlnm){
     try{
       let response = await fetch(`${api_url}/movie-by-title/${urlnm.toLowerCase()}`)
       response = await response.json()
-      console.log(response)
       if(response && response.isOk && response.data.Type === content_type){
         setCdata(response.data)
       }
@@ -44,11 +42,6 @@ function Content({content_type}){
           <title>{contentData?.Title}</title>
           <meta name="description" content={ `${contentData?.Title} ${ contentData?.Type || "" } download free. without login & signup. first download no ads!` } />
           <meta name="keywords" content={`${contentData?.Title} ${ contentData?.Type || "" } download, bangla movie download, hindi movie download`} />
-          <meta property="og:title" content={`${contentData?.Title} | NewFlex`}}>
-          <meta property="og:description" content={`Download or watch ${contentData?.Title} full movie from MovieZone.`}>
-          <meta property="og:image" content={contentData?.Poster}>
-          <meta property="og:url" content={`https://newflex.vercel.app/movie/${contentData?.Title}`}>
-          <meta property="og:type" content="website">
         </Helmet>
         <div className="s_content_containar">
         
@@ -136,7 +129,7 @@ function Content({content_type}){
         </table>
         
       </div>
-        <NewUpdate />
+        <NewUpdate content_type={content_type} Genre={contentData?.Genre} />
       </div>
     </>
     )

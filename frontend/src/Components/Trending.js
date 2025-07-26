@@ -9,7 +9,6 @@ const Trending = ({ trending_contents, content_type })=>{
   const Navigate = useNavigate()
   const count = [{},{},{},{},{}]
   
-  console.log(trending_contents.length)
   
   useEffect(()=>{
     // SCROLL EFFECT FUNCTIONALIRY SECTION

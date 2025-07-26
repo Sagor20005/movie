@@ -32,6 +32,6 @@ body{
   padding-bottom: 100px;
 }
 .App .App_body{
-  width: 100%;
+  width: 100vw;
   padding-top: 80px;
 }

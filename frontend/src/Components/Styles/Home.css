@@ -1,29 +1,11 @@
-.home_overly{
-  height: 100vh;
-  width: 100vw;
-  background-color: var(--text);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.home_overly > img{
-  width: 100%;
-  max-width: 500px;
-  height: auto;
-}
-.home_overly .latxt{
-  position: absolute;
-  top: 100px;
-  color: #20f508;
-  text-align: center;
-}
-@media (min-width:500px){
+@media(min-width: 500px){
   .home_body{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+  display: grid;
+  grid-auto-columns: 1fr 1fr;
+  grid-template-areas: "l r";
+  gap: 10px;
+}
+.side{
+  min-width: 50%;
+}
 }

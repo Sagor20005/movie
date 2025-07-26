@@ -8,7 +8,7 @@ function Tranding(){
   const [mainHtml,setHtml] = useState(null)
   
   // get data from redux storr
-  const TrandingCon = useSelector((state)=> state.moviesList.contents)
+  const TrandingCon = useSelector((state)=> state.foryou.contents)
   
   const Navigate = useNavigate()
   
