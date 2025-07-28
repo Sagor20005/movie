@@ -78,8 +78,6 @@ h3{
   }
 }
 
-.extra_images_containar{
-}
 .extra_images_containar .extra_images{
   width: 100%;
 }
@@ -92,11 +90,22 @@ h3{
   margin: 10px;
   display: block;
   min-width: calc(100% - 5px);
+  overflow: scroll;
 }
 @scope(.download_table){
   th,td{
     padding: 5px;
     margin: 0;
+  }
+  td{
+    text-align: center;
+  }
+  td a{
+    text-decoration: none;
+    color: white;
+    background-color: red;
+    border-radius: 2px;
+    padding: 2px 5px;
   }
   tr:nth-child(even){
     border-bottom-color: #3bd45d;

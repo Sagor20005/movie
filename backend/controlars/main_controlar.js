@@ -200,7 +200,6 @@ const AddAditionalData = async (req,resp)=>{
     if(response) resp.status(200).json({isOk:true})
     
   }catch(error){
-    console.log(error)
     resp.status(500).json({
       isOk: false,
       msg: devolopmentState === "devolopment" ? error.message: "Error in servere."

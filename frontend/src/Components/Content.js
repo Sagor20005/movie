@@ -103,6 +103,9 @@ function Content({content_type}){
         <table className="download_table">
           <thead>
             <tr>
+            {
+              content_type === "series" ? <th>Episode</th> : null
+            }
             <th>Download</th>
             <th>Quality</th>
             <th>Language</th>
@@ -115,6 +118,9 @@ function Content({content_type}){
             contentData?.Downloads?.map((link)=>{
               return(
               <tr key={link._id}>
+                {
+                  content_type === "series" ? <td>{link.title || "All"}</td> : null
+                }
                 <td> <Link target="_blank" to={`/download/${contentData._id}/${link._id}`}  >Download</Link> </td>
                 <td>{link.quality}</td>
                 <td>{link.language}</td>

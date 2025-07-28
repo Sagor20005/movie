@@ -22,6 +22,7 @@ const movieSchema = mongoose.Schema({
   Type:String,
   Images:[String],
   Downloads:[{
+    title: String,
     url:String,
     size:String,
     language:String,
