@@ -88,10 +88,31 @@ async function getConById(req,resp){
 }
 // GET CONTENT BY ID
 
+
+
+// GET FEATURED CONTENTS
+async function getFeatured(req,resp){
+  try{
+    const movies = await movieColl.find({ Featured: true });
+    resp.status(200).json({
+      isOk:true,
+      movies
+    })
+  }catch(err){
+    resp.status(200).json({
+      isOk:false,
+      msg: err.message
+    })
+  }
+}
+// GET FEATURED CONTENTS
+
+
 module.exports = {
   getUpdated,
   getTrending,
   getForyou,
   getAllContent,
-  getConById
+  getConById,
+  getFeatured
 }

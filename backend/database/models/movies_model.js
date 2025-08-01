@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 
 const movieSchema = mongoose.Schema({
   url_name:String,
+  Featured:Boolean,
   Title:String,
   Year:String,
   Rated:String,

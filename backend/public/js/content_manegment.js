@@ -14,6 +14,7 @@ const popop_title = document.querySelector("#popup_title")
 const foryou_radio = document.querySelector("#foryou_radio")
 const trending_radio = document.querySelector("#trending_radio")
 const new_radio = document.querySelector("#new_radio")
+const featured_radio = document.querySelector("#featured_radio")
 const popup_close_btn = document.querySelector(".popup_close_btn")
 const curpage = document.querySelector("#curpage")
 const type_select = document.querySelector("#type_select")
@@ -104,13 +105,14 @@ window.expandData = function(data) {
   foryou_radio.checked = data.AutoShow
   trending_radio.checked = data.Trand
   new_radio.checked = data.New
+  featured_radio.checked = data.Featured
 }
 
 popup_close_btn.addEventListener("click", ()=> popop_containar.style.display = "none")
 
 // Popop State updator functionality
 popop_containar.addEventListener("click", async (e)=> {
-  const checkboxs = ["Trand", "AutoShow", "New"]
+  const checkboxs = ["Trand", "AutoShow", "New", "Featured"]
   if (!checkboxs.includes(e.target.name)) return false
 
   const data = {

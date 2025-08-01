@@ -5,6 +5,7 @@ import settingSlice from "../features/settings/settingSlice.js"
 import aditionalDataSlice from "../features/aditionalData/aditionalDataSlice.js"
 import trendingSlice from "../features/Trending/TrendingSlice.js"
 import allContentSlice from "../features/allContent/allContentSlice.js"
+import featuredSlice from "../features/Featured/FeaturedSlice.js"
 
 export default configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export default configureStore({
     setting: settingSlice,
     aditionalData: aditionalDataSlice,
     trending: trendingSlice,
-    all_content: allContentSlice
+    all_content: allContentSlice,
+    featured: featuredSlice
   },
 })

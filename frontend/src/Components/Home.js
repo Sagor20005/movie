@@ -1,7 +1,7 @@
 import "./Styles/Home.css"
 import ContentHome from "./ContentHome"
 import SearchResult from "./SearchResult"
-import Tranding from "./Tranding"
+import Featured from "./Featured"
 import Trending from "./Trending"
 import { useSelector, useDispatch } from "react-redux"
 import { Helmet } from 'react-helmet-async';
@@ -9,6 +9,7 @@ import { GetSettings } from "../features/settings/settingSlice"
 import { getTrending } from "../features/Trending/TrendingSlice"
 import { getForyou } from "../features/foryou/foryou.js"
 import { getContents } from "../features/allContent/allContentSlice.js"
+import { getFeatured } from "../features/Featured/FeaturedSlice"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import useScrollToTop from "./CastomHooks/useScrollToTop.js"
@@ -41,6 +42,7 @@ function Home({content_type,expand}){
     if(TrendingContents.length === 0) dispatch(getTrending())
     if(foryou_contents.length === 0) dispatch(getForyou())
     if(all_content.length === 0) dispatch(getContents())
+    dispatch(getFeatured())
   },[])
   
   
@@ -56,7 +58,7 @@ function Home({content_type,expand}){
         <div className="side" style={{
           gridArea:"l"
         }}>
-          <Tranding />
+          <Featured />
           <Trending trending_contents={content_type === "movie" ? trending_movies : trending_series } content_type={content_type} />
           { searchComponent ? <SearchResult /> : <ContentHome content_list={ content_type === "movie" ? moviesList : seriesList } content_type={content_type} page={pnum} expand={expand} /> }
         </div>

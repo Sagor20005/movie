@@ -33,7 +33,8 @@ const {
   getTrending,
   getForyou,
   getAllContent,
-  getConById
+  getConById,
+  getFeatured
 } = require("../controlars/content_get&post.js")
 
 
@@ -108,7 +109,8 @@ router.get("/updted",getUpdated)
 router.get("/trndng",getTrending)
 // GET ALL CONTENTS
 router.get("/all", getAllContent)
-
+//Get Featured data 
+router.get("/featured",getFeatured)
 
 // export
 module.exports = router;

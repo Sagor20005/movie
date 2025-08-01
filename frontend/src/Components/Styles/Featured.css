@@ -1,0 +1,35 @@
+.Featured_component{
+  width: 100%;
+  max-width: 100%;
+  min-height: 250px;
+  display: flex;
+  overflow: scroll;
+}
+.Featured_component .f_con{
+  width: 100%;
+  height: 250px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.f_con img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.f_con .c_info{
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  background-color: #0b150c7b;
+  padding-inline: 5px;
+  border-radius: 5px;
+}
+
+.empty_f_con{
+  background-color: var(--box_bg);
+  padding: 10px;
+  border-radius: 13px;
+}
+
