@@ -33,3 +33,10 @@
   border-radius: 13px;
 }
 
+@media(min-width:1500px){
+  .Featured_component .f_con{
+    width: calc(1500px / 2 / 2);
+    height: calc(1500px / 2 / 2 /2);
+  }
+}
+
