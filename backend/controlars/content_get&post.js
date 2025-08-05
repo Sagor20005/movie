@@ -93,7 +93,7 @@ async function getConById(req,resp){
 // GET FEATURED CONTENTS
 async function getFeatured(req,resp){
   try{
-    const movies = await movieColl.find({ Featured: true });
+    const movies = await movieColl.find({ Featured: true }).sort({ createdAt: -1 });
     resp.status(200).json({
       isOk:true,
       movies
