@@ -42,7 +42,7 @@ const {
 router.all("/", (req, resp)=> resp.render("landpage"))
 
 // Add a movie
-router.post("/addMovie", sanitizeDatels,checkExist, addMovie)
+router.post("/addMovie",checkExist, addMovie)
 
 // Get only auto show movie
 router.get("/show-movies", ShowMovies)
