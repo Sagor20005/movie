@@ -94,7 +94,8 @@ const addMovie = async (req, resp)=> {
         
         resp.status(200).json({
           isOk:true,
-          msg:"Added Success."
+          msg:"Added Success.",
+          _id:response._id
         })
       }else{
         resp.status(404).json({
