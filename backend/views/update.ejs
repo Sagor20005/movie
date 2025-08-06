@@ -101,6 +101,7 @@
           <table id="download_tbl">
             <% data?.Downloads.forEach((download)=>{ %>
               <tr>
+                <td><%= download?.title ? download?.title : "All"  %></td>
                 <td> <a href="<%= download?.url %>">Download</a> </td>
                 <td><%= download?.quality %></td>
                 <td><%= download?.language %></td>
