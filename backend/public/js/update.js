@@ -135,6 +135,8 @@ function renderDownloadLinks(){
   
   DownloadLinkList.forEach((obj)=>{
     const tr = document.createElement("tr")
+    const td0 = document.createElement("td")
+    td0.innerHTML = obj.title
     const td1 = document.createElement("td")
     td1.innerHTML = `
     <a href="${obj.url}">Download</a>
@@ -148,19 +150,21 @@ function renderDownloadLinks(){
     const td5 = document.createElement("td")
     td5.innerHTML = `<button onclick="deleteLink('${obj.url}')" type="button" >Delete</button>`
     
-    tr.append(td1, td2, td3, td4, td5)
+    tr.append(td0,td1, td2, td3, td4, td5)
     download_table.appendChild(tr)
   })
   
 }
 function handleDownloadLink() {
   
+  const title = document.querySelector("#download_title").value
   const url = document.querySelector("#download_url").value
   const language = document.querySelector("#download_language").value
   const size = document.querySelector("#download_size").value
   const quality = document.querySelector("#download_quality").value
 
   const obj = {
+    title: title ? title: null,
     url: url ? url: null,
     language: language ? language: "....",
     size: size ? size+"mb": "..?mb",

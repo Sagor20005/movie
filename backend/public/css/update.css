@@ -107,6 +107,9 @@ input:not([type="file"]), textarea{
   #download_link_adder{
     margin-block: 10px;
   }
+  #download_tbl{
+    overflow: scroll;
+  }
   #download_tbl td{
     padding: 10px;
   }
