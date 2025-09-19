@@ -34,7 +34,8 @@ const movieSchema = mongoose.Schema({
   Poster:String,
   AutoShow:Boolean,
   Category:String,
-  UploadedImageIds:[String]
+  UploadedImageIds:[{url:String,id:String}],
+  Banner:String
 },{ timestamps: true  })
 
 const movieCollection = mongoose.model("movie",movieSchema)
