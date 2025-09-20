@@ -500,11 +500,11 @@ const UpdateContent = async (req,resp)=>{
   }
 }
 
-// GET CONTENT BY TITLE 
-const getContentByTitle = async (req,resp)=>{
+// GET CONTENT BY URL-NAME 
+const getContentByUrlname = async (req,resp)=>{
   try{
-    const Title = req.params.title
-    const data = await movieColl.findOne({ url_name: { $regex: Title } })
+    const url_name = req.params.urlname
+    const data = await movieColl.findOne({ url_name })
     resp.status(200).json({
       isOk:true,
       data
@@ -573,6 +573,6 @@ module.exports = {
   UpdateSettings,
   DeleteImageById,
   UpdateContent,
-  getContentByTitle,
+  getContentByUrlname,
   GetSiteMap
 }

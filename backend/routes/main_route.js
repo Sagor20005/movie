@@ -24,7 +24,7 @@ const {
   UpdateSettings,
   DeleteImageById,
   UpdateContent,
-  getContentByTitle,
+  getContentByUrlname,
   GetSiteMap
 } = require("../controlars/main_controlar")
 
@@ -96,7 +96,7 @@ router.put("/settings", UpdateSettings)
 router.put("/update-movie", UpdateContent)
 
 // GET MOVIE BY TITLE 
-router.get("/movie-by-title/:title",getContentByTitle)
+router.get("/movie-by-urlname/:urlname",getContentByUrlname)
 
 // Get sitemap.xml 
 router.get('/sitemap.xml', GetSiteMap);

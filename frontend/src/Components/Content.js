@@ -13,7 +13,7 @@ function Content({content_type}){
   
   async function fetchContent(urlnm){
     try{
-      let response = await fetch(`${api_url}/movie-by-title/${urlnm.toLowerCase()}`)
+      let response = await fetch(`${api_url}/movie-by-urlname/${urlnm}`)
       response = await response.json()
       if(response && response.isOk && response.data.Type === content_type){
         setCdata(response.data)
