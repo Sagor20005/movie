@@ -49,7 +49,7 @@ const addMovie = async (req, resp)=> {
       Rated: req.body.Rated,
       Released: req.body.Released,
       Runtime: req.body.Runtime,
-      Genre: req.body.Genre && typeof(req.body.Genre) === "string" ? JSON.parse(req.body.Genre) : req.body.Genre ,
+      Genre: req.body.Genre,
       Director: req.body.Director,
       Writer: req.body.Writer,
       Actors: req.body.Actors ,
@@ -60,14 +60,15 @@ const addMovie = async (req, resp)=> {
       imdbVotes: req.body.imdbVotes,
       imdbID: req.body.imdbID,
       Type: req.body.Type?.toLowerCase(),
-      Images: req.body.Images && typeof(req.body.Images) === "string" ? JSON.parse(req.body.Images) : req.body.Images,
-      Downloads:  req.body.Downloads && typeof(req.body.Downloads) === "string" ? JSON.parse(req.body.Downloads) : req.body.Downloads,
-      New: req.body.New  ? true : false,
-      Trand: req.body.Trand  ? true : false,
+      Images: req.body.Images,
+      Downloads:  req.body.Downloads,
+      New: req.body.New,
+      Trand: req.body.Trand,
       Poster: req.body.Poster,
-      AutoShow: req.body.AutoShow ? true : false,
+      AutoShow: req.body.AutoShow,
       Category: req.body.Category?.toLowerCase(),
-      UploadedImageIds: req.body.UploadedImageIds && typeof(req.body.UploadedImageIds) === "string" ? JSON.parse(req.body.UploadedImageIds) : undefined
+      UploadedImageIds: req.body.UploadedImageIds,
+      Banner: req.body.Banner
     }
     
     // IF HAVR UPLOAD DATE CONVERT INTO ISO DATE
@@ -88,7 +89,7 @@ const addMovie = async (req, resp)=> {
         //postToPage(response.Title,response.Images,response.url_name)
         
         // Change waitfordelete state into false 
-        response.UploadedImageIds.forEach(async(id)=>{
+        response.UploadedImageIds.forEach(async({id})=>{
           const makeFalse = await imageRecordColl.findOneAndUpdate({_id:id},{ waitForDelete:false, postId: response._id })
         })
         
@@ -484,7 +485,7 @@ const UpdateContent = async (req,resp)=>{
     const updateRes = await movieColl.findOneAndUpdate({_id},Upcontent)
     
     // Change waitfordelete state into false 
-    Upcontent.UploadedImageIds.forEach(async(id)=>{
+    Upcontent.UploadedImageIds.forEach(async({id})=>{
       const makeFalse = await imageRecordColl.findOneAndUpdate({_id:id},{ waitForDelete:false, postId: _id })
     })
     

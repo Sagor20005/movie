@@ -34,7 +34,7 @@ const movieSchema = mongoose.Schema({
   Poster:String,
   AutoShow:Boolean,
   Category:String,
-  UploadedImageIds:[{url:String,id:String}],
+  UploadedImageIds:[{id:String,url:String}],
   Banner:String
 },{ timestamps: true  })
 

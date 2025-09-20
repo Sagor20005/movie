@@ -1,17 +1,1 @@
-[{
-  "Colors": {
-    "text_color":"#00ffff",
-    "bg_color":"#000000",
-    "title_color":"#669900",
-    "box_bg_color":"#383838",
-    "small_text_color":"#8f8f8f",
-    "link_color":"#5dc26a",
-    "logo_color":"#ff7aff"
-  },
-  "_id":"68343ae35e1a875067502bd0",
-  "Site_url":"https://movie-delta-wheat.vercel.app/",
-  "Site_name":"NewFlex",
-  "createdAt":"2025-05-26T09:56:51.231Z",
-  "updatedAt":"2025-06-27T16:31:39.049Z",
-  "__v":0
-}]
+[{"Colors":{"text_color":"#00ffff","bg_color":"#000000","title_color":"#669900","box_bg_color":"#383838","small_text_color":"#8f8f8f","link_color":"#5dc26a","logo_color":"#ff7aff"},"_id":"68343ae35e1a875067502bd0","Site_url":"https://movie-delta-wheat.vercel.app/","Site_name":"NewFlex","createdAt":"2025-05-26T09:56:51.231Z","updatedAt":"2025-06-27T16:31:39.049Z","__v":0}]

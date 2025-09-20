@@ -52,7 +52,7 @@ const Featured = ()=>{
           return(
           <div onClick={()=> Navigate(`/${content?.Type || "movie"}/${content?.url_name}`)} ref={contentElements} key={content?._id} className={`f_con ${isEmpty ? "empty_f_con" : ""}`} >
             {
-              content._id ? <img src={content.Images[0] } alt={content?.Title}/> : null
+              content._id ? <img src={ content.Banner || content.Images[0] } alt={content?.Title}/> : null
             }
             <div className="c_info">
               <p>{content?.Title}</p>
