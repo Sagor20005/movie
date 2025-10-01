@@ -1,16 +1,9 @@
 import { useState, useEffect } from "react"
 import Swal from "sweetalert2"
-import MaltiInputFild from "../Elements/MultiTextFild.js"
 import Button from "../Elements/Button.js"
 import Lodding from "../Elements/Lodding.js"
 
 export default function AditionalDataManager(){
-  const aditionalType_list = {
-    Genre:"text",
-    Type:"text",
-    Category:"text"
-  }
-  
   const Api = process.env.REACT_APP_API_URL
   
   async function Alert( oparetion, icon="warning" ){
@@ -46,7 +39,7 @@ export default function AditionalDataManager(){
     }
     GetAditiinalData()
     
-  },[])
+  },[Api])
   
   
   async function SaveAditional(){

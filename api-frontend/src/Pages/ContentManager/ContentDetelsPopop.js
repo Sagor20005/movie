@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react"
+import { useContext } from "react"
 import { MainContext } from "../../context/MainStateContext.js"
 import RadioToggle from "../Elements/RadioToggle.js"
 import Button from "../Elements/Button.js"
@@ -9,7 +9,6 @@ import Swal from 'sweetalert2'
 export default function ContentDetelsPopop( {
   open, setIsOpen, content_id, index
 }) {
-  const [emni,setEmni] = useState(null)
   const Navigate = useNavigate()
   const Api = process.env.REACT_APP_API_URL
 
@@ -18,10 +17,10 @@ export default function ContentDetelsPopop( {
 
 
   function ClosePopop(e) {
-    // Set Close Popop
-    setIsOpen(false)
     // Stop Boobleing
     e.stopPropagation()
+    // Set Close Popop
+    setIsOpen(false)
   }
 
   function UpdateStatus(Fild, Value) {
@@ -43,7 +42,7 @@ export default function ContentDetelsPopop( {
 
   async function HandleClick(name, cb) {
 
-    const response = await UpdateStatus(name, !currContent[name])
+    await UpdateStatus(name, !currContent[name])
 
     const Index = contents.findIndex((e)=> e._id === content_id)
     const content = contents[Index]
@@ -53,7 +52,6 @@ export default function ContentDetelsPopop( {
     setMainState((prev)=>({
       ...prev, contents: originalData
     }))
-    setEmni(crypto.randomUUID())
     cb()
   }
 

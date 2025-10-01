@@ -35,7 +35,7 @@ export default function Setting(){
     
     GetSetting()
     setHelper(reset)
-  },[reset])
+  },[reset,Api])
   
   
   // Save Setting Function

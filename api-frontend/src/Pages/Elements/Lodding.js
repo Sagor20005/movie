@@ -8,5 +8,7 @@ export default function Lodding({size}){
       return <div className="h-[50px] w-[50px] border-t-[2px] border-black rounded-full m-auto animate-spin"></div>
     case "big":
       return <div className="h-[70px] w-[70px] border-t-[2px] border-black rounded-full m-auto animate-spin"></div>
+    default:
+      return <div className="h-[50px] w-[50px] border-t-[2px] border-black rounded-full m-auto animate-spin"></div>
   }
 }

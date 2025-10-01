@@ -1,5 +1,5 @@
 import Select from "../Elements/Select.js"
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import {useLocalStorage} from "../../hooks/useLocalStorage.js"
 
 export default function ContentManageFilter({setFilter,founded,total}){

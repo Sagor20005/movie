@@ -6,7 +6,7 @@ export default function MultiTextFild({
   onChange
 }){
   const [currFild,setCurrFild] = useState(Object.keys(Fild_config)[0])
-  const [data,setData] = state
+  const [data] = state
   
   return(
     <div className="border-black border-[1px] rounded-md p-1 m-2 flex gap-2 capitalize">

@@ -34,7 +34,7 @@ export default function UselessImages(){
     
     // Function calling calling
     GetImages()
-  },[])
+  },[Api])
   
   
   // DELETE USELESS IMAGES 

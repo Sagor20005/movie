@@ -16,11 +16,9 @@ export default function passedMoment(createdTimeStr){
     const fild = millObj[dateStuctar[i]]
     if(passedTime <= fild){
       return  Math.floor(passedTime / millObj[dateStuctar[i-1]]) + dateStuctar[i-1]
-      break
     }
     if(i === dateStuctar.length-1){
       return  Math.floor(passedTime / millObj[dateStuctar[i]]) + dateStuctar[i]
-      break
     }
   }
 }

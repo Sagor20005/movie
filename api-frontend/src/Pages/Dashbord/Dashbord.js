@@ -4,7 +4,7 @@ import { MainContext } from "../../context/MainStateContext.js"
 
 export default function Dashbord(){
   
-  const [{contents},setContentList] = useContext(MainContext)
+  const [{contents}] = useContext(MainContext)
   
   function GetLength(data){
     const length = {Trending:0,Foryou:0,Featured:0}
