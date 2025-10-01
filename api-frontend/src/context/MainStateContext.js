@@ -1,11 +1,6 @@
-import {
-  useLocalStorage
-} from "../hooks/useLocalStorage.js"
-import {
-  createContext,
-  useState,
-  useEffect
-} from "react"
+import { useLocalStorage} from "../hooks/useLocalStorage.js"
+import { createContext, useState, useEffect } from "react"
+
 
 export const MainContext = createContext()
 
@@ -47,19 +42,17 @@ export function MainStateContext ( {
             ...prev, aditionalData: res.data
           }))
         }
-        console.log(res)
       }catch(err) {
         console.log(err)}
     }
     
-    FetchAditionalData()
     FetchContents()
+    FetchAditionalData()
   },
     [])
 
   return (
-    <MainContext.Provider value={[MainState,
-      setMainState]}>
+    <MainContext.Provider value={[MainState,setMainState]}>
       {children}
     </MainContext.Provider>
   )

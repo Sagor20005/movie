@@ -1,8 +1,8 @@
 import { useContext, useState, useEffect } from "react"
-import { MainContext } from "../context/MainStateContext.js"
-import ContentManageFilter from "./SubComponents/ContentManageFilter.js"
-import FilteredContents from "./SubComponents/FilteredContents.js"
-import Pagination from "./SubComponents/Pagination.js"
+import { MainContext } from "../../context/MainStateContext.js"
+import ContentManageFilter from "./ContentManageFilter.js"
+import FilteredContents from "./FilteredContents.js"
+import Pagination from "./Pagination.js"
 
 export default function ContentManager(){
   const [{contents}] = useContext(MainContext)
@@ -22,7 +22,8 @@ export default function ContentManager(){
       return{...p,max: pageCount,numbar:0 }
     })
   },[filter])
-  if(contents.length === 0) return <h1 className="text-2xl text-center mt-[300px] block">Lodding...</h1>
+  
+  
   
   return(
     <div className="h-full">

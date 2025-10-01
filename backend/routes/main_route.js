@@ -25,7 +25,8 @@ const {
   DeleteImageById,
   UpdateContent,
   getContentByUrlname,
-  GetSiteMap
+  GetSiteMap,
+  DeleteContentBy_id
 } = require("../controlars/main_controlar")
 
 const {
@@ -83,7 +84,7 @@ router.get("/unwanted_image", GetUnwantedImage)
 // Delete image by id
 router.delete("/delete-img/:id", DeleteImageById)
 
-// Get unwanted_image
+// Delete unwanted_image
 router.delete("/unwanted_image", DeleteUnwantedImage)
 
 // Get setting object
@@ -111,6 +112,9 @@ router.get("/trndng",getTrending)
 router.get("/all", getAllContent)
 //Get Featured data 
 router.get("/featured",getFeatured)
+
+// Delete Movie 
+router.delete("/remove-con",DeleteContentBy_id)
 
 // export
 module.exports = router;

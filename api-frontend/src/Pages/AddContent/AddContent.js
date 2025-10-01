@@ -1,45 +1,53 @@
 import {useState,useEffect} from "react"
-import { useLocation } from "react-router-dom"
-import Select from "./SubComponents/Select.js"
-import Button from "./Elements/Button.js"
-import MultiTextFild from "./SubComponents/MultiTextFild.js"
-import RadioToggle from "./SubComponents/RadioToggle.js"
-import AddPoster from "./SubComponents/AddPoster.js"
-import ImagesComponent from "./SubComponents/ImagesComponent.js"
-import DownloadSection from "./SubComponents/DownloadSection.js"
-import GenreManager from "./SubComponents/GenreManager.js"
-import {Fild_config,template} from "./store_config.js"
-import {useLocalStorage} from "../hooks/useLocalStorage.js"
-import { ToastContainer, toast } from 'react-toastify';
+import { useLocation, useNavigate } from "react-router-dom"
+import Select from "../Elements/Select.js"
+import Button from "../Elements/Button.js"
+import MultiTextFild from "../Elements/MultiTextFild.js"
+import RadioToggle from "../Elements/RadioToggle.js"
+import AddPoster from "./ImageHandle/AddPoster.js"
+import ImagesComponent from "./ImageHandle/ImagesComponent.js"
+import DownloadSection from "./DownloadLinkManager/DownloadSection.js"
+import GenreManager from "./Genre/GenreManager.js"
+import {Fild_config,template} from "../store_config.js"
+import {useLocalStorage} from "../../hooks/useLocalStorage.js"
+import Swal from 'sweetalert2'
 
 export default function AddContent() {
   const { state } = useLocation()
+  const Navigate = useNavigate()
+  
+  
   // Download Input State
   const [Download,
     setDownload] = useLocalStorage("Download", {
-      url: "", language: "", quality: "", size: "", title: "All"
+      url: "", language: "", quality: "", size: "", title: "All", _id:crypto.randomUUID()
     })
   // Content Data state
   const [content,
     setContent] = useLocalStorage("content", template)
 
-  
+   // Is Update State 
+  const [isUpdate,setIsUpdate] = useLocalStorage("isUpdate",!!content._id)
+   
   useEffect(()=>{
+    
+    // Get Content For update Mode
     async function GetContent(){
       const Api = process.env.REACT_APP_API_URL || null
-      if( !Api || !state) return null
+      if( !Api || !state) return null // if empty api or state then quit hear
       try{
         const request = await fetch(Api+"/getbyid/"+state.id)
         const response = await request.json()
-        console.log(response)
         if(response.isOk){
+          // Set content
           setContent(response.movie)
+          setIsUpdate(true)
         }
       }catch(err){
-        
+        // Handle error
       }
     }
-    GetContent()
+    GetContent() //Calling GetContent
   },[])
   
   
@@ -54,47 +62,60 @@ export default function AddContent() {
 
 // Submit The Content Function
   async function SubmitContent(content) {
-    console.log(content)
-    return
     try {
+      const route = isUpdate ? "/update-movie" : "/addMovie" // Set Server Route Path Dynamickly
       const Api = process.env.REACT_APP_API_URL || null
       if (!Api) return null
       if(Download.url) throw Error("Please put corsor on Doenload Input & Press Enter button!")
       const options = {
-        method: "post",
+        method: isUpdate ? "put" : "post",
         body: JSON.stringify(content),
         headers: {
           "content-type": "application/json"
         }
       }
-      let response = fetch(Api+"/addMovi", options)
-      toast.promise(response,{
-        pending: 'Promise is pending',
-        success: 'Promise resolved 👌',
-        error: 'Promise rejected 🤯'
-      })
+      let response = await fetch(Api+route, options)
       response = await response.json()
       if (response.isOk) {
-        alert("Success to add!")
+        setContent(template)
+        if(isUpdate) {
+          Navigate("/manage-content")
+          setIsUpdate(false)
+        }
+        Swal.fire("Success to add!")
       } else {
-        toast.error("Faild to Save!")
+        Swal.fire("Faild to Save!")
       }
     }catch(err) {
       console.log(err)
-      toast.error(err.message)
+      Swal.fire(err.message)
     }
   }
 
   // Main Jsx Content
   return(
     <div className="p-2">
-      <ToastContainer />
       {/* Text Fields */}
-      <MultiTextFild Fild_config={Fild_config} state={[content, setContent]} />
+      <MultiTextFild 
+      onChange={(key,val)=>{
+        setContent((prev)=>{
+          return {
+            ...prev,[key]:val
+          }
+        })
+      }}
+      Fild_config={Fild_config} state={[content, setContent]} />
 
       {/* Type and Genre sectiin */}
       <div>
-        {/*<Select state={[content,setContent]} value={content.Type} id="type" label="Type" name="type" defaultValue="" defaultText="Choose an Option" options={["movie","series"]}  />*/}
+        <Select onChange={(e)=>{
+          setContent((prev)=>{
+            return {
+              ...prev,
+              Type:e.target.value
+            }
+          })
+        }} value={content.Type} id="type" label="Type" name="Type" options={["movie","series"]}  />
         <RadioToggle onClick={(name, cb)=>toggleHandle(name, cb)} name="Trand" isOn={content.Trand} />
         <RadioToggle onClick={(name, cb)=>toggleHandle(name, cb)} name="AutoShow" isOn={content.AutoShow} />
         <RadioToggle onClick={(name, cb)=>toggleHandle(name, cb)} name="Featured" isOn={content.Featured} />
@@ -112,7 +133,8 @@ export default function AddContent() {
         <ImagesComponent state={[content, setContent]} />
       </div>
 
-      <Button text="Post The Content" onClick={()=>SubmitContent(content)} />
+      <Button text={content._id ? "Update The Content" : "Post The Content"} onClick={()=>SubmitContent(content)} />
+      <Button onClick={()=>setContent(template)} text="Clear" />
     </div>
   )
 }

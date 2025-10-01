@@ -1,12 +1,12 @@
-import Select from "./Select.js"
+import Select from "../../Elements/Select.js"
 import { useContext } from "react"
-import { MainContext } from "../../context/MainStateContext.js"
+import { MainContext } from "../../../context/MainStateContext.js"
+import Lodding from "../../Elements/Lodding.js"
 
 export default function GenreManager({state}){
   const [{aditionalData}] = useContext(MainContext)
   const genreList = aditionalData.Genre
   const [content,setContent] = state
-  console.log(aditionalData,content)
   
   
   function HandleDelete(genre){
@@ -14,7 +14,9 @@ export default function GenreManager({state}){
   }
   
   
-  if(!genreList.length) return null
+  if(!genreList.length) return <div className="flex justify-center my-7">
+    <Lodding size="mid" />
+  </div>
   
   return(
     <div className="my-9">

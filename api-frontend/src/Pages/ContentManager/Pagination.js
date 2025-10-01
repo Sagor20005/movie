@@ -1,12 +1,9 @@
 export default function Pagination({ page_info, setPage_info }){
-  console.log(page_info)
   function ClickHandle(type){
     if(type === "back" && page_info.numbar > 0){
       setPage_info((prev)=>{return{...prev,numbar:page_info.numbar-1}})
-      console.log("back")
     }else if(type === "next" && page_info.numbar < page_info.max){
       setPage_info((prev)=>{return{...prev,numbar:page_info.numbar+1}})
-      console.log("next")
     }
   }
   

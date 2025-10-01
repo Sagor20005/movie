@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useUploadImage } from "../../hooks/useUploadImage.js"
+import { useUploadImage } from "../../../hooks/useUploadImage.js"
 
 export default function AddPoster({ state }){
   const temp_poster = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbcB8CzP84p9DQiOBLSizDs3rqZTkCFgSESfvcRAHuQNqD32FOVquUR7U&s=10"

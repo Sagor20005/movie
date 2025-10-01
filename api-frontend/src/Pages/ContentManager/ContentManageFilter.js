@@ -1,21 +1,35 @@
-import Select from "./Select.js"
+import Select from "../Elements/Select.js"
 import { useState, useEffect } from "react"
+import {useLocalStorage} from "../../hooks/useLocalStorage.js"
 
 export default function ContentManageFilter({setFilter,founded,total}){
-  const [filterObj,setFilterObj] = useState({ type:"movie", status:"Trand" })
+  const [filterObj,setFilterObj] = useLocalStorage("filterObj",{ type:"movie", status:"Trand" })
   const Status_config = {
     Trending:"Trand",
     Foryou:"AutoShow",
-    Featured:"Featured"
+    Featured:"Featured",
+    All:"all"
   }
   const type_config={
     Movie:"movie",
-    Series:"series"
+    Series:"series",
+    All:"all"
   }
   
   
   useEffect(()=>{
-    setFilter(()=>(data)=> data.Type === filterObj.type && data[filterObj.status] === true)
+    // Set Filter Function CallBack Function 
+      setFilter(()=>{
+        // Return The CallBack Function 
+        return function(data){
+          return ( 
+            // Type Chake 
+            (filterObj.type  === "all" ? true : filterObj.type === data.Type) && 
+            // Status Chake 
+            (filterObj.status === "all" ? true : data[filterObj.status])
+            )
+        }
+      })
   },[filterObj])
   
   

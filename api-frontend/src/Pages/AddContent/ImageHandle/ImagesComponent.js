@@ -1,5 +1,5 @@
-import { useUploadImage } from "../../hooks/useUploadImage.js"
-import Button from "../Elements/Button.js"
+import { useUploadImage } from "../../../hooks/useUploadImage.js"
+import Button from "../../Elements/Button.js"
 
 export default function ImagesComponent({ state }){
   const [content,setContent] = state
@@ -46,7 +46,7 @@ export default function ImagesComponent({ state }){
       
       {
         content.Images.map((url)=>(
-        <div className="group max-h-[100px] rounded-md shadow-md relative bg-amber-100 overflow-hidden">
+        <div className="group h-[110px] rounded-md shadow-md relative bg-amber-100 overflow-hidden">
           <img className="rounded-md h-full w-full object-cover object-center" src={url} alt="img" />
           <div className="group-hover:top-0 transition-all rounded bg-[#0000008f] absolute -top-[150%] left-0 z-10">
             <Button onClick={()=>HandleDelete(url)} text="Delete" />

@@ -28,7 +28,7 @@ export const Fild_config = {
    Country: "",
    imdbRating: "",
    imdbVotes: "",
-   Type: "",
+   Type: "movie",
    Images: [],
    Downloads: [],
    New: false,

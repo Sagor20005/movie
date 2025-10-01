@@ -221,7 +221,7 @@ const GetAditionalData = async (req,resp)=>{
     }
   }catch(error){
     resp.status(500).json({
-      isOk: true,
+      isOk: false,
       msg: "Server error!"
     })
   }
@@ -358,7 +358,7 @@ const GetById = async (req,resp)=>{
   }
 }
 
-// Get content by id
+// Get Link by id
 const GetLinkById = async (req,resp)=>{
   try{
     const response = await movieColl.findOne({_id:req.params.id})
@@ -427,13 +427,11 @@ const DeleteImageById = async (req,resp)=>{
   try{
     const DelRecord = await imageRecordColl.findOneAndDelete({_id:id})
     let response = await imageKit.deleteFile(DelRecord.fileId)
-    console.log(response)
     resp.status(200).json({
       isOk:true,
       data:"deleted: " + id
     })
   }catch(err){
-    console.log(err)
     resp.status(500).json({
       isOk:false,
       message:"delete faild: "+id
@@ -552,6 +550,32 @@ const GetSiteMap = async (req, res) => {
 }
 
 
+// Delete Content By_id 
+async function DeleteContentBy_id(req,resp){
+  const {_id} = req.body // Extract Provided Id
+  try{
+    const { UploadedImageIds } = await movieColl.findOneAndDelete({_id}) // Delete the content 
+    // if not have record Ids then Send response
+    if(!UploadedImageIds.length) resp.status(200).json({isOk:true})
+    // if have
+    // Store All Record Delete promises And Handle
+    const recordDelRespAll = await Promise.all(UploadedImageIds.map((idObj)=>{
+      return imageRecordColl.findOneAndDelete({ _id: idObj.id })
+    }))
+    
+    // Now Delete images from imageKit 
+    await Promise.all(recordDelRespAll.map((del_res)=>{
+      return imageKit.deleteFile(del_res.fileId)
+    }))
+    
+    resp.status(200).json({ isOk:true })
+    
+  }catch(err){
+    resp.status(500).json({ isOk:false, msg:"Samthing wrong on Images!" })
+  }
+}
+
+
 
 // Export Controlars
 module.exports = {
@@ -574,5 +598,6 @@ module.exports = {
   DeleteImageById,
   UpdateContent,
   getContentByUrlname,
-  GetSiteMap
+  GetSiteMap,
+  DeleteContentBy_id
 }
