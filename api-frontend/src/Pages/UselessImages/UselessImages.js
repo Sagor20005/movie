@@ -58,7 +58,7 @@ export default function UselessImages(){
   
   function CenterOverlay({children}){
     return (
-      <div className="h-[100%] flex justify-center items-center">
+      <div className="h-full flex justify-center items-center">
         {children}
       </div>
       )
@@ -69,7 +69,7 @@ export default function UselessImages(){
   
   // Data Fulfiled State
   return(
-    <div className="p-3 h-full">
+    <div className="p-3 overflow-y-scroll h-dvh">
       {/*TITEL BAR AND DELETE BUTTON*/} 
       <div className="flex justify-between items-center">
         <h3 className="text-2xl">UselessImages</h3>

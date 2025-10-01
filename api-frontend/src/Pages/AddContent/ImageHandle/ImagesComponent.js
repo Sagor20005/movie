@@ -60,7 +60,7 @@ export default function ImagesComponent({ state }){
       
       
       
-      <div className="min-h-[100px] rounded-md shadow-md flex justify-around gap-3 items-center bg-amber-100">
+      <div className="min-h-[100px] rounded-md shadow-md flex justify-around gap-3 items-center">
         <label htmlFor="image_input">
           <img className="rounded-md bg-white h-[50px] w-[50px] p-1 rounded" src="/icons/select.png" alt="select"/>
         </label>

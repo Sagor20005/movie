@@ -9,7 +9,7 @@ import UslessImages from "./Pages/UselessImages/UselessImages.js"
 
 function App() {
   return (
-    <div className=" bg-amber-500 min-h-[100dvh] min-w-[100vw] font-mono">
+    <div className="font-mono">
       <Navbar />
       <Routes>
         <Route path="/" element={<Dashbord />} />

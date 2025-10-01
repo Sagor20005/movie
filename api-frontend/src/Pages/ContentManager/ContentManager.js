@@ -21,7 +21,7 @@ export default function ContentManager(){
       const pageCount =Math.floor(divided)
       return{...p,max: pageCount,numbar:0 }
     })
-  },[filter])
+  },[filter,contents])
   
   
   

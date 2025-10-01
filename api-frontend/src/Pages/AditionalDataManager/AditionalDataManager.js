@@ -123,21 +123,21 @@ export default function AditionalDataManager(){
       
       {/*GENRE SECTION*/}
       <div className="my-3">
-        <h3 className="text-2xl text-center">Genre</h3>
+        <h3 className="text-blue-400 font-bold text-2xl text-center">Genre</h3>
         <ul className="flex flex-wrap gap-1 justify-center">
           {aditionalData?.Genre?.map((gen)=> (<li onClick={()=>DeleteAn("Genre",gen)} className="p-2 rounded shadow" key={gen}>{gen}</li>) )}
         </ul>
       </div>
       {/*CATEGORY SECTION*/}
       <div className="my-3">
-        <h3 className="text-2xl text-center">Category</h3>
+        <h3 className="text-blue-400 font-bold text-2xl text-center">Category</h3>
         <ul className="flex flex-wrap gap-1 justify-center">
           {aditionalData?.Category?.map((cat)=> (<li onClick={()=>DeleteAn("Category",cat)} className="p-2 rounded shadow" key={cat}>{cat}</li>) )}
         </ul>
       </div>
       {/*Type SECTION*/}
       <div className="my-3">
-        <h3 className="text-2xl text-center">Type</h3>
+        <h3 className="text-blue-400 font-bold text-2xl text-center">Type</h3>
         <ul className="flex flex-wrap gap-1 justify-center">
           {aditionalData?.Type?.map((typ)=> (<li onClick={()=>DeleteAn("Type",typ)} className="p-2 rounded shadow" key={typ}>{typ}</li>) )}
         </ul>

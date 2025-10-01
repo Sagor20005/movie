@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "MovieFlex Managment System",
+  "name": "This is an managment system app. Created by Jakareya Haldar.",
   "icons": [
     {
       "src": "favicon.ico",
