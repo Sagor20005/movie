@@ -2,7 +2,6 @@ const Express = require('express')
 const app = Express()
 require('dotenv').config()
 const cors = require('cors')
-const ejs = require("ejs")
 const fileUpload = require('express-fileupload');
 const setSetting = require("./utilities/createInitialSetting.js")
 const connectDb = require("./database/mongoose.con.js")
@@ -22,9 +21,6 @@ connectDb()
 
 // CALL INITIAL SETTINGS
 setSetting()
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'ejs')
-
 
 // app.use()
 app.use(Express.static('public'))

@@ -40,7 +40,9 @@ const {
 
 
 // routers
-router.all("/", (req, resp)=> resp.render("landpage"))
+router.all("/", (req, resp)=> {
+  resp.json({server:"running.."})
+})
 
 // Add a movie
 router.post("/addMovie",checkExist, addMovie)

@@ -1,7 +1,6 @@
 const aditionalDataColl = require("../database/models/aditionalData_model.js")
 
 async function addGrnre(genres){
-  console.log("hitt")
   try{
     const aditionalData = await aditionalDataColl.find()
     const alradyHaved = aditionalData[0].Genre
