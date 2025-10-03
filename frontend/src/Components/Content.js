@@ -4,10 +4,11 @@ import NewUpdate from "./NewUpdate"
 import { useParams, Link } from "react-router-dom"
 import {useEffect,useState} from "react"
 import { Helmet } from 'react-helmet-async';
+import Lodding from "./Elements/LoddingComponent.js"
 
 function Content({content_type}){
   const api_url = process.env.REACT_APP_API_URL
-  const [contentData,setCdata] = useState({})
+  const [contentData,setCdata] = useState(null)
   const {urlnm} = useParams()
   
   
@@ -33,9 +34,11 @@ function Content({content_type}){
      fetchContent(urlnm)
   },[urlnm])
   
+  
+  if(!contentData) return <Lodding />
+  
   return(
     <>
-      <Navbar />
       <div className="content_body">
         <Helmet>
           <title>{contentData?.Title}</title>
