@@ -12,7 +12,7 @@ const devolopmentState = process.env.STATE
 
 
 // TESTING SECTION 
-
+require("./testing.js")
 // TESTING SECTION 
 
 
@@ -116,7 +116,9 @@ const addMovie = async (req, resp)=> {
 
 // search a movie 
 const SearchMovie = async (req,resp)=>{
-   const searchedMovies = await movieColl.find({ [req.params.searchBy] :{ $regex: `${req.params.query}` } }).sort({ createdAt: -1 })
+  const { searchBy, query } = req.params
+  const CastomizeQuery = query === "18+ adult" ? query.split(" ")[1] : query // If query == 18+ adult then cjeng into only adult becose 18+ adult is not work
+   const searchedMovies = await movieColl.find({ [searchBy] :{ $regex: CastomizeQuery } }).sort({ createdAt: -1 })
    resp.status(200).json({
      data: searchedMovies
    })
