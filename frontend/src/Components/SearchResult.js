@@ -10,15 +10,18 @@ import loddingGif from "./Assets/lodding1.gif"
 import errorGif from "./Assets/error.gif"
 import SeparateContentAreay from "../Utilities/separateProductAreay.js"
 import movieIcon from "./Assets/movie.png"
+import {usePageination} from "../hooks/usePageination.js"
+import Pageination from "./Elements/Pageination.js"
 
 function SearchResult(){
   const dispatch = useDispatch()
   const Navigate = useNavigate()
-  
-  const [ pageIndex, setIndex ] = useState(0)
-  
+  // Get Search result
   const { isLodding, isError, contents } = useSelector((state)=> state.search )
-  const separatedContent = SeparateContentAreay(contents)
+  // Pageination Hooks
+  const { startEnd, nextPage, previousPage, pages } = usePageination("searchResult",contents.length,10,0)
+  
+  const currentPageContrnt = contents.slice( startEnd.start, startEnd.end )
   
   // Defain html genaretor
   let contentHtml = ""
@@ -28,7 +31,7 @@ function SearchResult(){
     contentHtml =(
     <div className="src_res_con_list" >
       {
-        separatedContent[pageIndex].map((content)=>{
+        currentPageContrnt.map((content)=>{
           return(
           <div onClick={()=>Navigate("/movie/"+content.url_name)} className="content">
             <div className="image">
@@ -63,11 +66,6 @@ function SearchResult(){
   function closeResult(){
     dispatch(hideSearchComponent())
   }
-  function handlePageination(e){
-    if(e.nodeName === "LI"){
-      setIndex(e.innerText-1)
-    }
-  }
   
   
   return(
@@ -76,21 +74,7 @@ function SearchResult(){
       <FontAwesomeIcon onClick={closeResult} title="Close search result." className="close_result_btn" icon={faXmark} />
       {contentHtml}
       
-      {
-          
-          contents.length > 0 && <ul onClick={(e)=>handlePageination(e.target)} className="page_list">
-          {
-            (function(){
-              const elarr = []
-              for (let i = 1; i <= separatedContent.length; i++){
-                elarr.push(<li>{i}</li>)
-              }
-              return elarr
-            })()
-          }
-        </ul>
-          
-        }
+      <Pageination pages={pages} nextPage={nextPage} previousPage={previousPage} />
       
     </div>
     )

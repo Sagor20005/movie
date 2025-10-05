@@ -5,9 +5,12 @@ const serverUrl = process.env.REACT_APP_API_URL
 
 // get autoshow movies thunk
 export const GetBySearch = createAsyncThunk("movies/GetBySearch", async ({searchBy,query})=>{
-  let response = await fetch(`${serverUrl}/search/${searchBy}/${query}`)
-  response = await response.json()
-  if(response && response.data) return response.data
+  try{
+    window.localStorage.removeItem("searchResult")  // delete local storage Current Page numbar
+    let response = await fetch(`${serverUrl}/search/${searchBy}/${query}`)
+    response = await response.json()
+    if(response && response.data) return response.data
+  }catch(err){console.log(err)}
 })
 
 
