@@ -2,7 +2,7 @@ import Select from "../Elements/Select.js"
 import { useEffect } from "react"
 import {useLocalStorage} from "../../hooks/useLocalStorage.js"
 
-export default function ContentManageFilter({setFilter,founded,total}){
+export default function ContentManageFilter({setFilter,founded,total,JumpPage}){
   const [filterObj,setFilterObj] = useLocalStorage("filterObj",{ type:"movie", status:"Trand" })
   const Status_config = {
     Trending:"Trand",
@@ -30,6 +30,9 @@ export default function ContentManageFilter({setFilter,founded,total}){
             )
         }
       })
+      
+      // Set Current Pageination page on 0
+      JumpPage(0)
   },[filterObj])
   
   
