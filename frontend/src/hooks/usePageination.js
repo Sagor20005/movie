@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 
-export function usePageination(name, totalLength, maxCon=12, initPage){
+export function usePageination(name, totalLength, maxCon=12){
   const [ pageNo, setPageNo ] = useState(0)
-  const maxPages = Math.floor(totalLength/maxCon)
+  const maxPages = getTotalPage(maxCon,totalLength)
   
   useEffect(()=>{
     // Get from ls 
@@ -25,6 +25,15 @@ export function usePageination(name, totalLength, maxCon=12, initPage){
     end: pageNo*maxCon +maxCon
   }
   
+  function getTotalPage(max,total){
+    const devidedByMax = total/max
+    const devidedByMaxFloor = Math.floor(devidedByMax)
+    if(devidedByMax === devidedByMaxFloor){
+      return devidedByMax-1
+    }else{
+      return devidedByMaxFloor
+    }
+  }
   
   function updateLocalStorage(page){
     const data = {
@@ -46,15 +55,22 @@ export function usePageination(name, totalLength, maxCon=12, initPage){
     updateLocalStorage(pageNo-1)
     setPageNo(pageNo-1)
   }
+  // Reset page 
+  function JumpPage(numbar){
+    if(numbar < 0 || numbar > maxPages) return
+    setPageNo(numbar)
+    updateLocalStorage(numbar)
+  }
   
   // Return Pageination data
   return {
     startEnd,
     pages:{
-      current:pageNo,
-      max: maxPages
+      current:pageNo+1,
+      max: maxPages+1
     },
     nextPage,
-    previousPage
+    previousPage,
+    JumpPage
   }
 }
